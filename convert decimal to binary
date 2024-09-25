@@ -1,0 +1,37 @@
+#include<iostream>
+#include <vector>
+using namespace std;
+
+void binary(int n,vector<int> &v) {
+    if(n==1) {
+        v.emplace_back(1);
+
+        return;
+    }
+   v.emplace_back(n%2);
+    binary(n/2,v);
+}
+
+void reverse(vector<int>& v) {
+    int i=0;
+    int n = v.size();
+
+   while(i<n-1-i) {
+   swap(v[i],v[n-1-i]);
+       i++;
+   }
+    for(auto x:v) {
+        cout<<x<<endl;
+    }
+}
+
+int main() {
+    int n;
+    cout<<"convert number to binary "<<endl;
+    cin>>n;
+   vector<int>v;
+   binary(n,v);
+    reverse(v);
+
+}
+

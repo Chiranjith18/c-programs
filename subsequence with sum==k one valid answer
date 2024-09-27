@@ -1,0 +1,35 @@
+#include<bits/stdc++.h>
+using namespace  std;
+bool printallsubsequences(int arr[],vector<int>&v,int i,int sum,int n,int k) {
+   if(i==n) {
+      return false;
+   }
+      if(sum==k) {
+           if(v.size()==0) {
+             cout<<"{}";
+           }
+          for(auto x:v) {
+             cout<<x<<",";
+          }
+          cout<<endl;
+          return true;
+      }
+   v.emplace_back(arr[i]);
+   sum+=arr[i];
+   if(printallsubsequences(arr,v,i+1,sum,n,k)){
+      return true;
+   }
+      v.pop_back();
+      sum-=arr[i];
+      if(printallsubsequences(arr,v,i+1,sum,n,k)) {
+         return true;
+      }
+ return false;
+   }
+int main() {
+   int k = 3;
+   int n = 3;
+   int arr[] ={1,2,1};
+   vector<int>v;
+   printallsubsequences(arr,v,0,0,n,k);
+}

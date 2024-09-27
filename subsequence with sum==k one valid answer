@@ -2,9 +2,7 @@
 using namespace  std;
 bool printallsubsequences(int arr[],vector<int>&v,int i,int sum,int n,int k) {
    if(i==n) {
-      return false;
-   }
-      if(sum==k) {
+if(sum==k) {
            if(v.size()==0) {
              cout<<"{}";
            }
@@ -14,6 +12,9 @@ bool printallsubsequences(int arr[],vector<int>&v,int i,int sum,int n,int k) {
           cout<<endl;
           return true;
       }
+      return false;
+   }
+      
    v.emplace_back(arr[i]);
    sum+=arr[i];
    if(printallsubsequences(arr,v,i+1,sum,n,k)){

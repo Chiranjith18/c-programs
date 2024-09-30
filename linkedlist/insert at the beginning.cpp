@@ -11,7 +11,7 @@ struct Node{
 void printlist(Node* head){
     Node* curr=head;
     for(curr=head;curr!=nullptr;curr=curr->next){
-        cout<<curr->next<<"->";
+        cout<<curr->data<<"->";
     }
     cout<<"Null"<<endl;
 }

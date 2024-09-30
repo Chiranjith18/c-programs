@@ -16,9 +16,16 @@ void printlist(Node* head){
     cout<<"Null"<<endl;
 }
 Node* insertpos(Node* head,int data,int pos){
-    
+    if(pos<1){
+        return head;
+    }
     Node* curr=head;
-    for( int i=1;i<=pos-2;i++){
+    if(curr==nullptr){
+        return head;
+    }
+    
+    
+    for( int i=1;i<=pos-2&&curr!=nullptr;i++){
         curr=curr->next;
     }
     Node* newnode=new Node(data);
@@ -34,7 +41,7 @@ int main() {
     cout<<"linked list before";
     printlist(head);
     
-    head=insertpos(head,3,5);
+    head=insertpos(head,3,2);
     cout<<"linked list after";
    printlist(head);
 

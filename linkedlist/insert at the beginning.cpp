@@ -16,22 +16,26 @@ void printlist(Node* head){
     cout<<"Null"<<endl;
 }
 //new head
-Node* head=nullptr;
-Node* insertfirst(Node* head,int data){
-    Node* newnode=new Node(10);
+
+Node* insert(Node* head,int data){
+    Node* newnode=new Node(data);
     newnode->next=head;
     head=newnode;
-    return newnode;
+    return head;
 }
 
 
 
 int main() {
-    Node* head=new Node(20);
-    head->next=new Node(30);
-    head->next->next=new Node(40);
+    Node* head=nullptr;
+    head=insert(head,5);
+    head=insert(head,10);
+    head=insert(head,15);
+    head=insert(head,20);
+    cout<<"linked list before";
     printlist(head);
-    head=insertfirst(head);
+    head=insert(head,3);
+    cout<<"linked list after";
     printlist(head);
 
     return 0;

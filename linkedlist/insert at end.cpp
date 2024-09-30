@@ -15,37 +15,30 @@ void printlist(Node* head){
     }
     cout<<"Null"<<endl;
 }
-//new head
 
-Node* insert(Node* head,int data){
-    Node* newnode=new Node(data);
-    newnode->next=head;
-    head=newnode;
-    return head;
+
+ Node* insertend(Node* head,int data){
+   Node* newnode=new Node(data);
+   if(head==nullptr){
+       return newnode;
+   }
+   Node* lastnode=head;
+   while(lastnode->next->next!=nullptr){
+       lastnode=lastnode->next;
+   }
+  lastnode->next=newnode;
+  return head;
 }
-Node* insertend(Node* head,int data){
-    while(head->next->next!=nullptr){
-       head=head->next;
-    }
-    Node* newnode=new Node(data);
-    head->next=newnode;
-   return head;
-    
-}
-
-
 
 int main() {
-    Node* head=nullptr;
-    head=insert(head,5);
-    head=insert(head,10);
-    head=insert(head,15);
-    head=insert(head,20);
+    Node* head=new Node(10);
+    head->next=new Node(20);
+    head->next->next=new Node(30);
     cout<<"linked list before";
     printlist(head);
     head=insertend(head,3);
     cout<<"linked list after";
-    printlist(head);
+   printlist(head);
 
     return 0;
 }

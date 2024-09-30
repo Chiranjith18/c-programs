@@ -25,7 +25,7 @@ Node* deletelast(Node* thread){
     }
     Node *curr=thread;
     while(curr->next->next!=nullptr){
-        curr=next->next;
+        curr=curr->next;
     }
     delete(curr->next);
     curr->next=nullptr;
@@ -38,8 +38,8 @@ int main() {
     thread->next=new Node(10);
     thread->next->next=new Node(11);
     printlist(thread);
-    int newlist=deletelast(thread);
-    printlist(newlist);
+    thread=deletelast(thread);
+    printlist(thread);
 
     return 0;
 }

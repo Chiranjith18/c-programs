@@ -15,7 +15,7 @@ void printlist(Node* head){
     }
     cout<<"Null";
 }
-Node deletelast(Node* thread){
+Node* deletelast(Node* thread){
     if(thread==nullptr){
         return nullptr;
     }

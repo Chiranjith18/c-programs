@@ -23,7 +23,7 @@ void printlist(Node* head){
        return newnode;
    }
    Node* lastnode=head;
-   while(lastnode->next->next!=nullptr){
+   while(lastnode->next!=nullptr){
        lastnode=lastnode->next;
    }
   lastnode->next=newnode;

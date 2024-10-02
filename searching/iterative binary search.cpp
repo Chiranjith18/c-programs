@@ -18,8 +18,9 @@ int binarysearch(int arr[],int low,int high,int x){
         else{
             high=mid-1;
         }
-        return -1;
+     
 }
+    return -1;
 }
 
 int main(){

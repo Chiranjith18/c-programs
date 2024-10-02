@@ -6,6 +6,7 @@ using namespace std;
 int j=1;
 
 void rotate(int arr[],int n,int d){
+
 int j=1;
 while(j<=d){
    int temp=arr[0];
@@ -30,6 +31,9 @@ int main(){
     
     cout<<"print the no of time u want to rotate the array";
     cin>>d;
+    if(d>n){
+        d=d-n;
+    }
     rotate(arr,n,d);
     cout<<"rotated by 1"<<endl;
     print(arr,n);

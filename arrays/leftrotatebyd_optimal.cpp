@@ -15,7 +15,7 @@ void reverse(vector<int> &arr,int low,int high,int d){
 
 void rotate(vector <int> &arr,int n, int d){
     reverse(arr,0,d-1,d);
-    reverse(arr,d+1,n-1,d);
+    reverse(arr,d,n-1,d);
     reverse(arr,0,n-1,d);
     
     }

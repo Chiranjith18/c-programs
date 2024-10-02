@@ -3,7 +3,7 @@
 using namespace std;
 
 void reverse(vector<int> &arr,int low,int high,int d){
-  while(low<=high){
+  while(low<high){
     int temp=arr[low];
     arr[low]=arr[high];
     arr[high]=temp;

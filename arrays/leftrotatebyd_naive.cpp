@@ -13,6 +13,7 @@ while(j<=d){
        arr[i-1]=arr[i];
    }
    arr[n-1]=temp;
+   j++;
 }
 }
 
@@ -26,6 +27,7 @@ int main(){
     int arr[]={1,2,3,4,5};
     int n=sizeof(arr)/sizeof(arr[0]);
     int d;
+    
     cout<<"print the no of time u want to rotate the array";
     cin>>d;
     rotate(arr,n,d);

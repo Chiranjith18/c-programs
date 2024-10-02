@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 #include<vector>
 #include<iostream>
-//d=3
+
 using namespace std;
 int j=1;
 

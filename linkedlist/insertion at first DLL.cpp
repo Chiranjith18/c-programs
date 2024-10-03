@@ -5,6 +5,10 @@ struct Node{
     int data;
     Node* prev;
     Node* next;
+ Node(int data1){
+        data=data1;
+        prev=next=nullptr;
+    }
 };
 Node* head=nullptr;
 void insertatbegin(int data){

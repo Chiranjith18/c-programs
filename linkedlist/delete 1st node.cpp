@@ -10,12 +10,15 @@ struct Node{
         next=nullptr;
     }
 };
-void deletefirst(Node* head){
-    delete(head);
+Node* deletefirst(Node* head){
+    Node* temp=head;
+    head=head->next;
+    delete(temp);
+    return head;
 }
 void print(Node* head){
     while(head!=nullptr){
-        cout<<head->data<<" ";
+        cout<<head->data<<"->";
         head=head->next;
     }
     cout<<"null";
@@ -24,12 +27,11 @@ void print(Node* head){
 int main() {
     Node* head=new Node(1);
     head->next=new Node(2);
- head->next =new Node(3);
-
-    cout<<"before";
+ head->next->next =new Node(3);
+    cout<<"before"<<endl;
     print(head);
-    deletefirst(head);
-    cout<<"after";
+    head=deletefirst(head);
+    cout<<"after"<<endl;
     print(head);
     
 

@@ -9,7 +9,7 @@ struct Node{
         next=NULL;
     }
 };
- Node* sortedmerge(Node* a, Node*b){
+ Node* sortedmerge(Node*a, Node*b){
     if(a==nullptr){
         return b;
     }
@@ -28,12 +28,15 @@ struct Node{
     while(a!=nullptr&&b!=nullptr){
         if(a->data<=b->data){
             tail->next=a;
+            tail=a;
             a=a->next;
         }
         else{
             tail->next=b;
+            tail=b;
             b=b->next;
         }
+    }
         if(a==nullptr){
             tail->next=b;
             
@@ -43,7 +46,8 @@ struct Node{
         }
         return head;
     }
-}
+
+
 
 void print(Node *head){
     Node *curr=head;

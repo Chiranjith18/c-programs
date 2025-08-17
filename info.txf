@@ -1,0 +1,4641 @@
+===== ./springapp/pom.xml =====
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.0.1</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>com.examly.springapp</groupId>
+    <artifactId>SpringBootEmp</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>SpringBootEmp</name>
+    <description>Demo project for Spring Boot</description>
+
+    <properties>
+        <java.version>17</java.version>
+    </properties>
+
+    <dependencies>
+        <!-- Spring Boot Starters -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+        </dependency>
+
+        <!-- MySQL Connector -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>8.0.32</version>
+        </dependency>
+
+        <!-- JSON Web Token Libraries -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+            <version>0.11.5</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <version>0.11.5</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId>
+            <version>0.11.5</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- Jakarta Mail API (optional, only if you need direct access to API) -->
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>jakarta.mail</artifactId>
+            <version>2.0.1</version>
+        </dependency>
+
+        <!-- Lombok (optional for getters/setters/constructors, only for compile time) -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Testing -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.hamcrest</groupId>
+                    <artifactId>hamcrest-core</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M5</version>
+                <configuration>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+===== ./springapp/.mvn/wrapper/maven-wrapper.properties =====
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#   https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+distributionUrl=https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.8.7/apache-maven-3.8.7-bin.zip
+wrapperUrl=https://repo.maven.apache.org/maven2/org/apache/maven/wrapper/maven-wrapper/3.1.1/maven-wrapper-3.1.1.jar
+===== ./springapp/src/test/java/com/examly/springapp/SpringappApplicationTests.java =====
+package com.examly.springapp;
+
+import java.io.File;
+import org.springframework.http.MediaType;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+@SpringBootTest(classes = SpringappApplication.class)
+@AutoConfigureMockMvc
+class SpringappFoodTruckVendorTests {
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    @Test
+    void controller_testAddFoodTruckVendor() throws Exception {
+        String vendorData = "{\"name\": \"Tasty Bites\", \"cuisineSpecialties\": \"Indian\", \"operatingRegion\": \"Chennai\", \"menuHighlights\": \"Butter Chicken, Paneer Tikka\", \"phoneNumber\": \"9876543210\"}";
+        mockMvc.perform(MockMvcRequestBuilders.post("/addVendor")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(vendorData)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isCreated())
+                .andReturn();
+    }
+
+    @Test
+void exception_testAddFoodTruckVendor_InvalidOperatingRegion() throws Exception {
+    String vendorData = "{\"name\": \"Tasty Bites\", \"cuisineSpecialties\": \"Indian\", \"operatingRegion\": \"InvalidRegion\", \"menuHighlights\": \"Butter Chicken, Paneer Tikka\", \"phoneNumber\": \"9876543210\"}";
+
+    mockMvc.perform(MockMvcRequestBuilders.post("/addVendor")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(vendorData)
+            .accept(MediaType.APPLICATION_JSON))
+            .andExpect(MockMvcResultMatchers.status().isBadRequest())
+            .andExpect(MockMvcResultMatchers.jsonPath("$").value("Invalid operating region. Must be either Chennai or Bangalore."))
+            .andReturn();
+}
+
+    @Test
+    void controller_testGetAllFoodTruckVendors() throws Exception {
+        mockMvc.perform(get("/getAllVendors")
+                .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$").isArray())
+                .andReturn();
+    }
+
+    @Test
+    public void controller_test_Controller_Directory_Exists() {
+        String directoryPath = "src/main/java/com/examly/springapp/controller";
+        File directory = new File(directoryPath);
+        assertTrue(directory.exists() && directory.isDirectory());
+    }
+
+    @Test
+    public void controller_test_FoodTruckVendorController_File_Exists() {
+        String filePath = "src/main/java/com/examly/springapp/controller/FoodTruckVendorController.java";
+        File file = new File(filePath);
+        assertTrue(file.exists() && file.isFile());
+    }
+
+    @Test
+    public void entity_test_Model_Directory_Exists() {
+        String directoryPath = "src/main/java/com/examly/springapp/model";
+        File directory = new File(directoryPath);
+        assertTrue(directory.exists() && directory.isDirectory());
+    }
+
+    @Test
+    public void entity_test_FoodTruckVendorModel_File_Exists() {
+        String filePath = "src/main/java/com/examly/springapp/model/FoodTruckVendor.java";
+        File file = new File(filePath);
+        assertTrue(file.exists() && file.isFile());
+    }
+
+    @Test
+    public void repository_test_Repository_Directory_Exists() {
+        String directoryPath = "src/main/java/com/examly/springapp/repository";
+        File directory = new File(directoryPath);
+        assertTrue(directory.exists() && directory.isDirectory());
+    }
+
+    @Test
+    public void service_test_Service_Directory_Exists() {
+        String directoryPath = "src/main/java/com/examly/springapp/service";
+        File directory = new File(directoryPath);
+        assertTrue(directory.exists() && directory.isDirectory());
+    }
+
+    @Test
+    public void service_test_FoodTruckvendorService_Class_Exists() {
+        checkClassExists("com.examly.springapp.service.FoodTruckVendorService");
+    }
+
+      
+      @Test
+      public void service_test_FoodTruckVendorModel_Class_Exists() {
+          checkClassExists("com.examly.springapp.model.FoodTruckVendor");
+      }
+
+    @Test
+    public void service_test_FoodTruckVendorModel_Has_name_Field() {
+        checkFieldExists("com.examly.springapp.model.FoodTruckVendor", "name");
+    }
+
+    @Test
+    public void service_test_FoodTruckVendorModel_Has_cuisineSpecialties_Field() {
+        checkFieldExists("com.examly.springapp.model.FoodTruckVendor", "cuisineSpecialties");
+    }
+
+    @Test
+    public void service_test_FoodTruckVendorModel_Has_operatingRegion_Field() {
+        checkFieldExists("com.examly.springapp.model.FoodTruckVendor", "operatingRegion");
+    }
+
+    @Test
+    public void service_test_FoodTruckVendorModel_Has_menuHighlights_Field() {
+        checkFieldExists("com.examly.springapp.model.FoodTruckVendor", "menuHighlights");
+    }
+
+    @Test
+    public void service_test_FoodTruckVendorModel_Has_phoneNumber_Field() {
+        checkFieldExists("com.examly.springapp.model.FoodTruckVendor", "phoneNumber");
+    }
+
+    @Test
+    public void repository_test_FoodTruckVendorRepo_Extends_JpaRepository() {
+        checkClassImplementsInterface("com.examly.springapp.repository.FoodTruckVendorRepo", "org.springframework.data.jpa.repository.JpaRepository");
+    }
+
+    @Test
+    public void config_test_CorsConfiguration_Class_Exists() {
+        checkClassExists("com.examly.springapp.configuration.CorsConfiguration");
+    }
+
+    @Test
+    public void config_test_CorsConfiguration_Has_Configuration_Annotation() {
+        checkClassHasAnnotation("com.examly.springapp.configuration.CorsConfiguration", "org.springframework.context.annotation.Configuration");
+    }
+
+    @Test
+    public void exception_test_InvalidOperatingRegionException_Class_Exists() {
+        checkClassExists("com.examly.springapp.exception.InvalidOperatingRegionException");
+    }
+
+     
+     @Test
+     public void exception_test_InvalidOperatingRegionException_Extends_RuntimeException() {
+         try {
+             Class<?> clazz = Class.forName("com.examly.springapp.exception.InvalidOperatingRegionException");
+             assertTrue(RuntimeException.class.isAssignableFrom(clazz),
+                     "InvalidOperatingRegionException should extend RuntimeException");
+         } catch (ClassNotFoundException e) {
+             fail("InvalidOperatingRegionException class does not exist.");
+         }
+     }
+
+    private void checkClassExists(String className) {
+        try {
+            Class.forName(className);
+        } catch (ClassNotFoundException e) {
+            fail("Class " + className + " does not exist.");
+        }
+    }
+
+    private void checkFieldExists(String className, String fieldName) {
+        try {
+            Class<?> clazz = Class.forName(className);
+            clazz.getDeclaredField(fieldName);
+        } catch (ClassNotFoundException | NoSuchFieldException e) {
+            fail("Field " + fieldName + " in class " + className + " does not exist.");
+        }
+    }
+
+    private void checkClassImplementsInterface(String className, String interfaceName) {
+        try {
+            Class<?> clazz = Class.forName(className);
+            Class<?> interfaceClazz = Class.forName(interfaceName);
+            assertTrue(interfaceClazz.isAssignableFrom(clazz));
+        } catch (ClassNotFoundException e) {
+            fail("Class " + className + " or interface " + interfaceName + " does not exist.");
+        }
+    }
+
+    private void checkClassHasAnnotation(String className, String annotationName) {
+        try {
+            Class<?> clazz = Class.forName(className);
+            Class<?> annotationClazz = Class.forName(annotationName);
+            assertTrue(clazz.isAnnotationPresent((Class<? extends java.lang.annotation.Annotation>) annotationClazz));
+        } catch (ClassNotFoundException e) {
+            fail("Class " + className + " or annotation " + annotationName + " does not exist.");
+        }
+    }
+}
+===== ./springapp/src/main/resources/application.properties =====
+# Database
+spring.datasource.url=jdbc:mysql://localhost:3306/appdb?createDatabaseIfNotExist=true
+spring.datasource.username=root
+spring.datasource.password=root
+
+spring.jpa.hibernate.ddl-auto=create  
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
+
+server.port=8080
+
+# JWT Configuration
+jwt.secret=7ffNMsajDPZZtOWpN4JPUFonlH8E+GrcduPIVnJk8Wtw6hH/Mk9E/q6ZmDmVjKbY==
+jwt.expiration=86400000
+
+# Email
+spring.mail.host=smtp.gmail.com
+spring.mail.port=587
+spring.mail.username=727823tucs033@skct.edu.in
+spring.mail.password=chiranjith12345678
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.starttls.enable=true
+spring.mail.properties.mail.smtp.starttls.required=true
+spring.mail.default-encoding=UTF-8
+
+# Async + scheduling
+spring.task.scheduling.pool.size=2
+===== ./springapp/src/main/java/com/examly/springapp/repository/AuditLogRepository.java =====
+package com.examly.springapp.repository;
+
+import com.examly.springapp.model.AuditLog;
+import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.UUID;
+
+public interface AuditLogRepository extends JpaRepository<AuditLog, UUID> {}
+===== ./springapp/src/main/java/com/examly/springapp/repository/FoodTruckVendorRepo.java =====
+package com.examly.springapp.repository;
+
+import com.examly.springapp.model.FoodTruckVendor;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface FoodTruckVendorRepo extends JpaRepository<FoodTruckVendor, Long> {
+    FoodTruckVendor findByUserId(Long userId);
+}
+===== ./springapp/src/main/java/com/examly/springapp/repository/UserRepository.java =====
+package com.examly.springapp.repository;
+
+import com.examly.springapp.model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.Optional;
+
+public interface UserRepository extends JpaRepository<User, Long> {
+    Optional<User> findByEmail(String email);
+    boolean existsByEmail(String email);
+}
+===== ./springapp/src/main/java/com/examly/springapp/repository/DocumentRepository.java =====
+package com.examly.springapp.repository;
+
+import com.examly.springapp.model.Document;
+import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
+import java.util.UUID;
+
+public interface DocumentRepository extends JpaRepository<Document, UUID> {
+    List<Document> findByApplicationId(UUID applicationId);
+}
+===== ./springapp/src/main/java/com/examly/springapp/repository/NotificationRepository.java =====
+package com.examly.springapp.repository;
+
+import com.examly.springapp.model.Notification;
+import com.examly.springapp.model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
+import java.util.UUID;
+
+public interface NotificationRepository extends JpaRepository<Notification, UUID> {
+    List<Notification> findByUserOrderByTimestampDesc(User user);
+}
+===== ./springapp/src/main/java/com/examly/springapp/repository/InspectionRepository.java =====
+package com.examly.springapp.repository;
+
+import com.examly.springapp.model.Inspection;
+import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
+import java.util.UUID;
+
+public interface InspectionRepository extends JpaRepository<Inspection, UUID> {
+    List<Inspection> findByApplicationId(UUID applicationId);
+}
+===== ./springapp/src/main/java/com/examly/springapp/repository/ApplicationRepository.java =====
+package com.examly.springapp.repository;
+
+import com.examly.springapp.model.Application;
+import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
+import java.util.UUID;
+
+public interface ApplicationRepository extends JpaRepository<Application, UUID> {
+    List<Application> findByUserId(Long userId);
+    List<Application> findByAssignedReviewerId(Long reviewerId);
+    List<Application> findByAssignedInspectorId(Long inspectorId);
+}
+===== ./springapp/src/main/java/com/examly/springapp/repository/ReviewRepository.java =====
+package com.examly.springapp.repository;
+
+import com.examly.springapp.model.Review;
+import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
+import java.util.UUID;
+
+public interface ReviewRepository extends JpaRepository<Review, UUID> {
+    List<Review> findByApplicationId(UUID applicationId);
+}
+===== ./springapp/src/main/java/com/examly/springapp/service/DocumentService.java =====
+package com.examly.springapp.service;
+
+import com.examly.springapp.exception.ResourceNotFoundException;
+import com.examly.springapp.model.Application;
+import com.examly.springapp.model.Document;
+import com.examly.springapp.model.User;
+import com.examly.springapp.repository.ApplicationRepository;
+import com.examly.springapp.repository.DocumentRepository;
+import com.examly.springapp.repository.UserRepository;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.UUID;
+
+@Service
+public class DocumentService {
+
+    private final DocumentRepository documentRepository;
+    private final ApplicationRepository applicationRepository;
+    private final UserRepository userRepository;
+
+    public DocumentService(DocumentRepository documentRepository,
+                           ApplicationRepository applicationRepository,
+                           UserRepository userRepository) {
+        this.documentRepository = documentRepository;
+        this.applicationRepository = applicationRepository;
+        this.userRepository = userRepository;
+    }
+
+    public Document uploadDocument(UUID applicationId, Long userId, MultipartFile file) throws IOException {
+        if (file.isEmpty()) throw new RuntimeException("File cannot be empty");
+
+        String fileType = file.getContentType();
+        if (!(fileType.equals("application/pdf") || fileType.startsWith("image/"))) {
+            throw new RuntimeException("Only PDF or Image files allowed");
+        }
+        if (file.getSize() > 5_000_000) {
+            throw new RuntimeException("File too large, max 5MB");
+        }
+
+        Application application = applicationRepository.findById(applicationId)
+                .orElseThrow(() -> new ResourceNotFoundException("Application not found"));
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+
+        File storageDir = new File("uploads");
+        if (!storageDir.exists()) storageDir.mkdirs();
+        File dest = new File(storageDir, file.getOriginalFilename());
+        file.transferTo(dest);
+
+        Document doc = new Document();
+        doc.setApplication(application);
+        doc.setUploadedBy(user);
+        doc.setFilename(file.getOriginalFilename());
+        doc.setFileType(fileType);
+        doc.setFileSize(file.getSize());
+        doc.setUploadTimestamp(LocalDateTime.now());
+        doc.setVirusScanned(true); // stub
+        doc.setStorageType("FileSystem");
+
+        return documentRepository.save(doc);
+    }
+
+    public List<Document> getDocumentsByApplication(UUID applicationId) {
+        return documentRepository.findByApplicationId(applicationId);
+    }
+}
+===== ./springapp/src/main/java/com/examly/springapp/service/EmailService.java =====
+package com.examly.springapp.service;
+
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Service;
+
+@Service
+public class EmailService {
+
+    private final JavaMailSender mailSender;
+
+    public EmailService(JavaMailSender mailSender) {
+        this.mailSender = mailSender;
+    }
+
+    @Async
+    public void sendSimpleMessage(String to, String subject, String text) {
+        try {
+            SimpleMailMessage message = new SimpleMailMessage();
+            message.setTo(to);
+            message.setSubject(subject);
+            message.setText(text);
+            mailSender.send(message);
+        } catch (Exception e) {
+            // Log exceptions here but don't interrupt the flow
+            System.err.println("Failed to send email: " + e.getMessage());
+        }
+    }
+}
+===== ./springapp/src/main/java/com/examly/springapp/service/AuditLogService.java =====
+package com.examly.springapp.service;
+
+import com.examly.springapp.model.AuditLog;
+import com.examly.springapp.model.User;
+import com.examly.springapp.repository.AuditLogRepository;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+@Service
+public class AuditLogService {
+
+    private final AuditLogRepository auditLogRepository;
+
+    public AuditLogService(AuditLogRepository repo) {
+        this.auditLogRepository = repo;
+    }
+
+    public void logAction(User user, String ipAddress, String module, String operation, String details) {
+        AuditLog log = new AuditLog(user, ipAddress, LocalDateTime.now(), module, operation, details);
+        auditLogRepository.save(log);
+    }
+
+    public List<AuditLog> getAllLogs() {
+        return auditLogRepository.findAll();
+    }
+}
+===== ./springapp/src/main/java/com/examly/springapp/service/FoodTruckVendorService.java =====
+package com.examly.springapp.service;
+
+import com.examly.springapp.model.FoodTruckVendor;
+import com.examly.springapp.exception.InvalidOperatingRegionException;
+import com.examly.springapp.repository.FoodTruckVendorRepo;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+import java.util.Arrays;
+import java.util.List;
+
+@Service
+public class FoodTruckVendorService {
+
+    private final FoodTruckVendorRepo repo;
+    private final List<String> allowedRegions = Arrays.asList("Chennai", "Bangalore");
+
+    public FoodTruckVendorService(FoodTruckVendorRepo repo) {
+        this.repo = repo;
+    }
+
+    public FoodTruckVendor addVendor(FoodTruckVendor vendor) {
+        validateOperatingRegion(vendor.getOperatingRegion());
+        return repo.save(vendor);
+    }
+
+    public Page<FoodTruckVendor> getAllVendors(Pageable pageable) {
+        return repo.findAll(pageable);
+    }
+
+    public void deleteVendor(Long id) {
+        if (!repo.existsById(id)) {
+            throw new RuntimeException("Vendor not found with id: " + id);
+        }
+        repo.deleteById(id);
+    }
+
+    public FoodTruckVendor updateVendor(Long id, FoodTruckVendor vendor) {
+        FoodTruckVendor existing = repo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Vendor not found"));
+        validateOperatingRegion(vendor.getOperatingRegion());
+        existing.setName(vendor.getName());
+        existing.setCuisineSpecialties(vendor.getCuisineSpecialties());
+        existing.setOperatingRegion(vendor.getOperatingRegion());
+        existing.setMenuHighlights(vendor.getMenuHighlights());
+        existing.setPhoneNumber(vendor.getPhoneNumber());
+        return repo.save(existing);
+    }
+
+    private void validateOperatingRegion(String region) {
+        if (!allowedRegions.contains(region)) {
+            throw new InvalidOperatingRegionException(
+                    "Invalid operating region. Must be either Chennai or Bangalore.");
+        }
+    }
+}
+===== ./springapp/src/main/java/com/examly/springapp/service/UserService.java =====
+package com.examly.springapp.service;
+
+import com.examly.springapp.exception.ResourceNotFoundException;
+import com.examly.springapp.model.Role;
+import com.examly.springapp.model.User;
+import com.examly.springapp.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+@Service
+public class UserService {
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+    }
+
+    public User findById(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+    }
+
+    public User registerUser(User user) {
+        if (userRepository.existsByEmail(user.getEmail())) {
+            throw new RuntimeException("Email already in use");
+        }
+        if (user.getRole() == null) {
+            user.setRole(Role.VENDOR);
+        }
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setVerified(false);
+        return userRepository.save(user);
+    }
+
+    public void verifyUser(String email) {
+        User user = findByEmail(email);
+        user.setVerified(true);
+        userRepository.save(user);
+    }
+}
+===== ./springapp/src/main/java/com/examly/springapp/service/ApplicationService.java =====
+package com.examly.springapp.service;
+
+import com.examly.springapp.exception.ResourceNotFoundException;
+import com.examly.springapp.model.*;
+import com.examly.springapp.repository.ApplicationRepository;
+import com.examly.springapp.repository.FoodTruckVendorRepo;
+import com.examly.springapp.repository.UserRepository;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.UUID;
+
+@Service
+public class ApplicationService {
+
+    private final ApplicationRepository applicationRepository;
+    private final UserRepository userRepository;
+    private final FoodTruckVendorRepo vendorRepo;
+    private final EmailService emailService;
+
+    public ApplicationService(ApplicationRepository applicationRepository, UserRepository userRepository,
+                              FoodTruckVendorRepo vendorRepo, EmailService emailService) {
+        this.applicationRepository = applicationRepository;
+        this.userRepository = userRepository;
+        this.vendorRepo = vendorRepo;
+        this.emailService = emailService;
+    }
+
+    public Application submitApplication(Long userId, Application application) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+
+        if (vendorRepo.findByUserId(userId) == null) {
+            throw new RuntimeException("Vendor must complete FoodTruckVendor profile before submitting application.");
+        }
+
+        application.setUser(user);
+        application.setStatus(ApplicationStatus.SUBMITTED);
+        application.setSubmissionDate(LocalDateTime.now());
+
+        Application saved = applicationRepository.save(application);
+
+        emailService.sendSimpleMessage(
+            user.getEmail(),
+            "Application Submitted",
+            "Your application ID " + saved.getId() + " has been successfully submitted."
+        );
+
+        return saved;
+    }
+
+    public Application updateApplicationStatus(UUID applicationId, ApplicationStatus status) {
+        Application application = applicationRepository.findById(applicationId)
+                .orElseThrow(() -> new ResourceNotFoundException("Application not found"));
+        application.setStatus(status);
+        Application saved = applicationRepository.save(application);
+
+        emailService.sendSimpleMessage(
+            application.getUser().getEmail(),
+            "Application Status Updated",
+            "Your application ID " + application.getId() + " status has been updated to: " + status.name()
+        );
+
+        return saved;
+    }
+
+    public List<Application> getApplicationsByUserRole(Role role, Long userId) {
+        if (role == Role.VENDOR) {
+            return applicationRepository.findByUserId(userId);
+        } else if (role == Role.REVIEWER) {
+            return applicationRepository.findByAssignedReviewerId(userId);
+        } else if (role == Role.INSPECTOR) {
+            return applicationRepository.findByAssignedInspectorId(userId);
+        } else if (role == Role.ADMIN) {
+            return applicationRepository.findAll();
+        }
+        throw new RuntimeException("Role not supported");
+    }
+
+    public Application assignReviewer(UUID applicationId, Long reviewerId) {
+        Application application = applicationRepository.findById(applicationId)
+                .orElseThrow(() -> new ResourceNotFoundException("Application not found"));
+        User reviewer = userRepository.findById(reviewerId)
+                .orElseThrow(() -> new ResourceNotFoundException("Reviewer not found"));
+
+        if (reviewer.getRole() != Role.REVIEWER) {
+            throw new RuntimeException("User is not a reviewer");
+        }
+
+        application.setAssignedReviewer(reviewer);
+        application.setStatus(ApplicationStatus.UNDER_REVIEW);
+        Application saved = applicationRepository.save(application);
+
+        emailService.sendSimpleMessage(
+            reviewer.getEmail(),
+            "New Application Assigned",
+            "You have been assigned to review application ID " + saved.getId()
+        );
+
+        return saved;
+    }
+
+    public Application assignInspector(UUID applicationId, Long inspectorId) {
+        Application application = applicationRepository.findById(applicationId)
+                .orElseThrow(() -> new ResourceNotFoundException("Application not found"));
+        User inspector = userRepository.findById(inspectorId)
+                .orElseThrow(() -> new ResourceNotFoundException("Inspector not found"));
+
+        if (inspector.getRole() != Role.INSPECTOR) {
+            throw new RuntimeException("User is not an inspector");
+        }
+
+        application.setAssignedInspector(inspector);
+        application.setStatus(ApplicationStatus.INSPECTION_SCHEDULED);
+        Application saved = applicationRepository.save(application);
+
+        emailService.sendSimpleMessage(
+            inspector.getEmail(),
+            "New Inspection Assigned",
+            "You have been assigned to inspect application ID " + saved.getId()
+        );
+
+        return saved;
+    }
+
+    public Application issueLicense(UUID applicationId) {
+        Application application = applicationRepository.findById(applicationId)
+                .orElseThrow(() -> new ResourceNotFoundException("Application not found"));
+
+        if (application.getStatus() != ApplicationStatus.APPROVED) {
+            throw new RuntimeException("License can only be issued for approved applications");
+        }
+
+        application.setLicenseNumber("LIC-" + UUID.randomUUID().toString().substring(0, 8));
+        application.setLicenseExpiryDate(LocalDateTime.now().plusYears(1));
+        application.setStatus(ApplicationStatus.LICENSE_ISSUED);
+
+        emailService.sendSimpleMessage(
+            application.getUser().getEmail(),
+            "License Issued",
+            "Your license has been issued. Number: " + application.getLicenseNumber()
+        );
+
+        return applicationRepository.save(application);
+    }
+
+    public Application renewApplication(UUID applicationId) {
+        Application oldApp = applicationRepository.findById(applicationId)
+                .orElseThrow(() -> new ResourceNotFoundException("Application not found"));
+
+        if (oldApp.getStatus() != ApplicationStatus.LICENSE_ISSUED) {
+            throw new RuntimeException("Only issued licenses can be renewed");
+        }
+
+        Application renewal = new Application();
+        renewal.setUser(oldApp.getUser());
+        renewal.setStatus(ApplicationStatus.RENEWAL_REQUESTED);
+        renewal.setSubmissionDate(LocalDateTime.now());
+
+        return applicationRepository.save(renewal);
+    }
+}
+===== ./springapp/src/main/java/com/examly/springapp/service/ReviewService.java =====
+package com.examly.springapp.service;
+
+import com.examly.springapp.exception.ResourceNotFoundException;
+import com.examly.springapp.model.*;
+import com.examly.springapp.repository.ApplicationRepository;
+import com.examly.springapp.repository.ReviewRepository;
+import com.examly.springapp.repository.UserRepository;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.UUID;
+
+@Service
+public class ReviewService {
+
+    private final ReviewRepository reviewRepository;
+    private final ApplicationRepository applicationRepository;
+    private final UserRepository userRepository;
+    private final EmailService emailService;
+
+    public ReviewService(ReviewRepository reviewRepository, ApplicationRepository applicationRepository,
+                         UserRepository userRepository, EmailService emailService) {
+        this.reviewRepository = reviewRepository;
+        this.applicationRepository = applicationRepository;
+        this.userRepository = userRepository;
+        this.emailService = emailService;
+    }
+
+    public Review addReview(UUID applicationId, Long reviewerId, Review review) {
+        Application app = applicationRepository.findById(applicationId)
+                .orElseThrow(() -> new ResourceNotFoundException("Application not found"));
+        User reviewer = userRepository.findById(reviewerId)
+                .orElseThrow(() -> new ResourceNotFoundException("Reviewer not found"));
+
+        if (reviewer.getRole() != Role.REVIEWER) {
+            throw new IllegalArgumentException("User is not a reviewer");
+        }
+
+        review.setApplication(app);
+        review.setReviewer(reviewer);
+        review.setReviewDate(LocalDateTime.now());
+
+        if (review.getStatus() == ReviewStatus.REJECTED && (review.getComments() == null || review.getComments().isBlank())) {
+            throw new RuntimeException("Comments required when rejecting an application");
+        }
+
+        switch (review.getStatus()) {
+            case APPROVED -> app.setStatus(ApplicationStatus.APPROVED);
+            case REJECTED -> {
+                app.setStatus(ApplicationStatus.REJECTED);
+                app.setRejectionComments(review.getComments());
+            }
+            case REQUEST_MORE_INFO, ESCALATED -> app.setStatus(ApplicationStatus.ESCALATED);
+        }
+
+        applicationRepository.save(app);
+
+        emailService.sendSimpleMessage(
+            app.getUser().getEmail(),
+            "Application Review Result",
+            "Your application ID " + app.getId() + " has been reviewed. Status: " +
+                    app.getStatus() +
+                    ". Comments: " + (review.getComments() != null ? review.getComments() : "None")
+        );
+
+        return reviewRepository.save(review);
+    }
+
+    public List<Review> getReviewsByApplication(UUID applicationId) {
+        return reviewRepository.findByApplicationId(applicationId);
+    }
+}
+===== ./springapp/src/main/java/com/examly/springapp/service/InspectionService.java =====
+package com.examly.springapp.service;
+
+import com.examly.springapp.exception.ResourceNotFoundException;
+import com.examly.springapp.model.*;
+import com.examly.springapp.repository.ApplicationRepository;
+import com.examly.springapp.repository.InspectionRepository;
+import com.examly.springapp.repository.UserRepository;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.UUID;
+
+@Service
+public class InspectionService {
+
+    private final InspectionRepository inspectionRepository;
+    private final ApplicationRepository applicationRepository;
+    private final UserRepository userRepository;
+    private final EmailService emailService;
+
+    public InspectionService(InspectionRepository inspectionRepository, ApplicationRepository applicationRepository,
+                             UserRepository userRepository, EmailService emailService) {
+        this.inspectionRepository = inspectionRepository;
+        this.applicationRepository = applicationRepository;
+        this.userRepository = userRepository;
+        this.emailService = emailService;
+    }
+
+    public Inspection addInspection(UUID applicationId, Long inspectorId, Inspection inspection) {
+        Application app = applicationRepository.findById(applicationId)
+                .orElseThrow(() -> new ResourceNotFoundException("Application not found"));
+        User inspector = userRepository.findById(inspectorId)
+                .orElseThrow(() -> new ResourceNotFoundException("Inspector not found"));
+
+        if (inspector.getRole() != Role.INSPECTOR) {
+            throw new IllegalArgumentException("User is not an inspector");
+        }
+
+        if (inspection.getNotes() == null || inspection.getNotes().isBlank()) {
+            throw new RuntimeException("Inspection notes required");
+        }
+        if (inspection.getResult() == null) {
+            throw new RuntimeException("Inspection result required");
+        }
+
+        inspection.setApplication(app);
+        inspection.setInspector(inspector);
+        inspection.setInspectionDate(LocalDateTime.now());
+
+        app.setStatus(ApplicationStatus.INSPECTION_COMPLETED);
+        applicationRepository.save(app);
+
+        Inspection savedInspection = inspectionRepository.save(inspection);
+
+        emailService.sendSimpleMessage(
+            app.getUser().getEmail(),
+            "Inspection Completed",
+            "The inspection for your application ID " + app.getId() + " has been completed."
+        );
+
+        return savedInspection;
+    }
+
+    public List<Inspection> getInspectionsByApplication(UUID applicationId) {
+        return inspectionRepository.findByApplicationId(applicationId);
+    }
+}
+===== ./springapp/src/main/java/com/examly/springapp/service/NotificationService.java =====
+package com.examly.springapp.service;
+
+import com.examly.springapp.exception.ResourceNotFoundException;
+import com.examly.springapp.model.Notification;
+import com.examly.springapp.model.User;
+import com.examly.springapp.repository.NotificationRepository;
+import com.examly.springapp.repository.UserRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.UUID;
+
+@Service
+public class NotificationService {
+
+    private final NotificationRepository notificationRepository;
+    private final UserRepository userRepository;
+
+    public NotificationService(NotificationRepository notificationRepository, UserRepository userRepository) {
+        this.notificationRepository = notificationRepository;
+        this.userRepository = userRepository;
+    }
+
+    public List<Notification> getNotificationsByUserId(Long userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+        return notificationRepository.findByUserOrderByTimestampDesc(user);
+    }
+
+    public Notification markAsRead(UUID notificationId) {
+        Notification notification = notificationRepository.findById(notificationId)
+                .orElseThrow(() -> new ResourceNotFoundException("Notification not found"));
+        notification.setRead(true);
+        return notificationRepository.save(notification);
+    }
+
+    public Notification createNotification(User user, String message) {
+        Notification notification = new Notification(user, message);
+        return notificationRepository.save(notification);
+    }
+}
+===== ./springapp/src/main/java/com/examly/springapp/exception/GlobalExceptionHandler.java =====
+package com.examly.springapp.exception;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.context.request.WebRequest;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+@ControllerAdvice
+public class GlobalExceptionHandler {
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<ErrorDetails> handleResourceNotFound(ResourceNotFoundException ex, WebRequest request) {
+        ErrorDetails error = new ErrorDetails(new Date(), ex.getMessage(), request.getDescription(false));
+        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(BadCredentialsException.class)
+    public ResponseEntity<ErrorDetails> handleBadCredentials(BadCredentialsException ex, WebRequest request) {
+        return new ResponseEntity<>(new ErrorDetails(new Date(),
+                "Invalid username or password", request.getDescription(false)), HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler(InvalidOperatingRegionException.class)
+    public ResponseEntity<String> handleInvalidRegion(InvalidOperatingRegionException ex) {
+        return ResponseEntity.badRequest().body(ex.getMessage());
+    }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<Map<String, String>> handleRuntime(RuntimeException ex) {
+        Map<String, String> response = new HashMap<>();
+        response.put("error", ex.getMessage());
+        response.put("timestamp", new Date().toString());
+        return ResponseEntity.badRequest().body(response);
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorDetails> handleGlobal(Exception ex, WebRequest request) {
+        ErrorDetails error = new ErrorDetails(new Date(), ex.getMessage(), request.getDescription(false));
+        return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    public static class ErrorDetails {
+        private Date timestamp;
+        private String message;
+        private String details;
+
+        public ErrorDetails(Date timestamp, String message, String details) {
+            this.timestamp = timestamp;
+            this.message = message;
+            this.details = details;
+        }
+
+        public Date getTimestamp() { return timestamp; }
+        public String getMessage() { return message; }
+        public String getDetails() { return details; }
+    }
+}
+===== ./springapp/src/main/java/com/examly/springapp/exception/InvalidOperatingRegionException.java =====
+package com.examly.springapp.exception;
+
+public class InvalidOperatingRegionException extends RuntimeException {
+    public InvalidOperatingRegionException(String message) {
+        super(message);
+    }
+}
+===== ./springapp/src/main/java/com/examly/springapp/exception/ResourceNotFoundException.java =====
+package com.examly.springapp.exception;
+
+public class ResourceNotFoundException extends RuntimeException {
+    public ResourceNotFoundException(String message) {
+        super(message);
+    }
+}
+===== ./springapp/src/main/java/com/examly/springapp/model/Document.java =====
+package com.examly.springapp.model;
+
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+@Entity
+public class Document {
+
+    @Id
+    @GeneratedValue
+    private UUID id;
+
+    @ManyToOne
+    @JoinColumn(name = "application_id", nullable = false)
+    private Application application;
+
+    @ManyToOne
+    @JoinColumn(name = "uploaded_by_user_id", nullable = false)
+    private User uploadedBy;
+
+    private String filename;
+    private String fileType;
+    private long fileSize;
+
+    private LocalDateTime uploadTimestamp;
+    private boolean virusScanned;
+    private String storageType; // FileSystem, S3, etc.
+
+    public Document() {}
+
+    public UUID getId() { return id; }
+    public Application getApplication() { return application; }
+    public void setApplication(Application application) { this.application = application; }
+    public User getUploadedBy() { return uploadedBy; }
+    public void setUploadedBy(User uploadedBy) { this.uploadedBy = uploadedBy; }
+    public String getFilename() { return filename; }
+    public void setFilename(String filename) { this.filename = filename; }
+    public String getFileType() { return fileType; }
+    public void setFileType(String fileType) { this.fileType = fileType; }
+    public long getFileSize() { return fileSize; }
+    public void setFileSize(long fileSize) { this.fileSize = fileSize; }
+    public LocalDateTime getUploadTimestamp() { return uploadTimestamp; }
+    public void setUploadTimestamp(LocalDateTime uploadTimestamp) { this.uploadTimestamp = uploadTimestamp; }
+    public boolean isVirusScanned() { return virusScanned; }
+    public void setVirusScanned(boolean virusScanned) { this.virusScanned = virusScanned; }
+    public String getStorageType() { return storageType; }
+    public void setStorageType(String storageType) { this.storageType = storageType; }
+}
+===== ./springapp/src/main/java/com/examly/springapp/model/Inspection.java =====
+package com.examly.springapp.model;
+
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+@Entity
+public class Inspection {
+
+    @Id
+    @GeneratedValue
+    private UUID id;
+
+    @ManyToOne
+    @JoinColumn(name = "application_id", nullable = false)
+    private Application application;
+
+    @ManyToOne
+    @JoinColumn(name = "inspector_id", nullable = false)
+    private User inspector;
+
+    @Column(length = 1000)
+    private String notes;
+
+    private LocalDateTime inspectionDate;
+
+    @Enumerated(EnumType.STRING)
+    private InspectionResult result;
+
+    public Inspection() {}
+
+    public UUID getId() { return id; }
+    public Application getApplication() { return application; }
+    public void setApplication(Application application) { this.application = application; }
+    public User getInspector() { return inspector; }
+    public void setInspector(User inspector) { this.inspector = inspector; }
+    public String getNotes() { return notes; }
+    public void setNotes(String notes) { this.notes = notes; }
+    public LocalDateTime getInspectionDate() { return inspectionDate; }
+    public void setInspectionDate(LocalDateTime inspectionDate) { this.inspectionDate = inspectionDate; }
+    public InspectionResult getResult() { return result; }
+    public void setResult(InspectionResult result) { this.result = result; }
+}
+
+enum InspectionResult {
+    PASSED, FAILED, FOLLOW_UP_REQUIRED
+}
+===== ./springapp/src/main/java/com/examly/springapp/model/Review.java =====
+package com.examly.springapp.model;
+
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+@Entity
+public class Review {
+
+    @Id
+    @GeneratedValue
+    private UUID id;
+
+    @ManyToOne
+    @JoinColumn(name = "application_id", nullable = false)
+    private Application application;
+
+    @ManyToOne
+    @JoinColumn(name = "reviewer_id", nullable = false)
+    private User reviewer;
+
+    @Column(length = 1000)
+    private String comments;
+
+    private LocalDateTime reviewDate;
+
+    @Enumerated(EnumType.STRING)
+    private ReviewStatus status;
+
+    public Review() {}
+    public Review(Application app, User reviewer, String comments, LocalDateTime reviewDate, ReviewStatus status) {
+        this.application = app;
+        this.reviewer = reviewer;
+        this.comments = comments;
+        this.reviewDate = reviewDate;
+        this.status = status;
+    }
+
+    public UUID getId() { return id; }
+    public Application getApplication() { return application; }
+    public void setApplication(Application application) { this.application = application; }
+    public User getReviewer() { return reviewer; }
+    public void setReviewer(User reviewer) { this.reviewer = reviewer; }
+    public String getComments() { return comments; }
+    public void setComments(String comments) { this.comments = comments; }
+    public LocalDateTime getReviewDate() { return reviewDate; }
+    public void setReviewDate(LocalDateTime reviewDate) { this.reviewDate = reviewDate; }
+    public ReviewStatus getStatus() { return status; }
+    public void setStatus(ReviewStatus status) { this.status = status; }
+}
+===== ./springapp/src/main/java/com/examly/springapp/model/Role.java =====
+package com.examly.springapp.model;
+
+public enum Role {
+    VENDOR,
+    ADMIN,
+    REVIEWER,
+    INSPECTOR,
+    SUPER_ADMIN
+}
+===== ./springapp/src/main/java/com/examly/springapp/model/Notification.java =====
+package com.examly.springapp.model;
+
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+@Entity
+public class Notification {
+
+    @Id
+    @GeneratedValue
+    private UUID id;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    private String message;
+    private boolean read;
+    private LocalDateTime timestamp;
+
+    public Notification() {}
+
+    public Notification(User user, String message) {
+        this.user = user;
+        this.message = message;
+        this.read = false;
+        this.timestamp = LocalDateTime.now();
+    }
+
+    public UUID getId() { return id; }
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
+    public String getMessage() { return message; }
+    public void setMessage(String message) { this.message = message; }
+    public boolean isRead() { return read; }
+    public void setRead(boolean read) { this.read = read; }
+    public LocalDateTime getTimestamp() { return timestamp; }
+    public void setTimestamp(LocalDateTime timestamp) { this.timestamp = timestamp; }
+}
+===== ./springapp/src/main/java/com/examly/springapp/model/ApplicationStatus.java =====
+package com.examly.springapp.model;
+
+public enum ApplicationStatus {
+    DRAFT,
+    SUBMITTED,
+    UNDER_REVIEW,
+    APPROVED,
+    REJECTED,
+    ESCALATED,
+    INSPECTION_SCHEDULED,
+    INSPECTION_COMPLETED,
+    LICENSE_ISSUED,
+    RENEWAL_REQUESTED
+}
+===== ./springapp/src/main/java/com/examly/springapp/model/User.java =====
+package com.examly.springapp.model;
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
+import java.util.*;
+
+@Entity
+public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(unique = true, nullable = false)
+    @NotBlank(message = "Email is required")
+    @Email(message = "Email should be valid")
+    private String email;
+
+    @Column(nullable = false)
+    @NotBlank(message = "Password is required")
+    @Size(min = 6, message = "Password must be at least 6 characters")
+    private String password;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    private boolean verified = false; // Email verification status
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private FoodTruckVendor foodTruckVendorProfile;
+
+    @Column(updatable = false)
+    private Date createdAt = new Date();
+
+    public User() {}
+
+    public User(String email, String password, Role role) {
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
+
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
+
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
+
+    public Role getRole() { return role; }
+    public void setRole(Role role) { this.role = role; }
+
+    public boolean isVerified() { return verified; }
+    public void setVerified(boolean verified) { this.verified = verified; }
+
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + role.name()));
+    }
+}
+===== ./springapp/src/main/java/com/examly/springapp/model/Application.java =====
+package com.examly.springapp.model;
+
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+@Entity
+public class Application {
+
+    @Id
+    @GeneratedValue
+    private UUID id;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    @Enumerated(EnumType.STRING)
+    private ApplicationStatus status;
+
+    private LocalDateTime submissionDate;
+
+    @ManyToOne
+    @JoinColumn(name = "assigned_reviewer_id")
+    private User assignedReviewer;
+
+    @ManyToOne
+    @JoinColumn(name = "assigned_inspector_id")
+    private User assignedInspector;
+
+    private String rejectionComments;
+    private String licenseNumber;
+    private LocalDateTime licenseExpiryDate;
+
+    public Application() {}
+
+    public Application(User user, ApplicationStatus status, LocalDateTime submissionDate) {
+        this.user = user;
+        this.status = status;
+        this.submissionDate = submissionDate;
+    }
+
+    public UUID getId() { return id; }
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
+    public ApplicationStatus getStatus() { return status; }
+    public void setStatus(ApplicationStatus status) { this.status = status; }
+    public LocalDateTime getSubmissionDate() { return submissionDate; }
+    public void setSubmissionDate(LocalDateTime submissionDate) { this.submissionDate = submissionDate; }
+    public User getAssignedReviewer() { return assignedReviewer; }
+    public void setAssignedReviewer(User assignedReviewer) { this.assignedReviewer = assignedReviewer; }
+    public User getAssignedInspector() { return assignedInspector; }
+    public void setAssignedInspector(User assignedInspector) { this.assignedInspector = assignedInspector; }
+    public String getRejectionComments() { return rejectionComments; }
+    public void setRejectionComments(String rejectionComments) { this.rejectionComments = rejectionComments; }
+    public String getLicenseNumber() { return licenseNumber; }
+    public void setLicenseNumber(String licenseNumber) { this.licenseNumber = licenseNumber; }
+    public LocalDateTime getLicenseExpiryDate() { return licenseExpiryDate; }
+    public void setLicenseExpiryDate(LocalDateTime licenseExpiryDate) { this.licenseExpiryDate = licenseExpiryDate; }
+}
+===== ./springapp/src/main/java/com/examly/springapp/model/ReviewStatus.java =====
+package com.examly.springapp.model;
+
+public enum ReviewStatus {
+    APPROVED,
+    REJECTED,
+    REQUEST_MORE_INFO,
+    ESCALATED
+}
+===== ./springapp/src/main/java/com/examly/springapp/model/AuditLog.java =====
+package com.examly.springapp.model;
+
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+@Entity
+public class AuditLog {
+
+    @Id
+    @GeneratedValue
+    private UUID id;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    private String ipAddress;
+    private LocalDateTime timestamp;
+    private String module;
+    private String operation;
+
+    @Column(length = 2000)
+    private String details;
+
+    public AuditLog() {}
+
+    public AuditLog(User user, String ipAddress, LocalDateTime timestamp,
+                    String module, String operation, String details) {
+        this.user = user;
+        this.ipAddress = ipAddress;
+        this.timestamp = timestamp;
+        this.module = module;
+        this.operation = operation;
+        this.details = details;
+    }
+
+    public UUID getId() { return id; }
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
+    public String getIpAddress() { return ipAddress; }
+    public void setIpAddress(String ipAddress) { this.ipAddress = ipAddress; }
+    public LocalDateTime getTimestamp() { return timestamp; }
+    public void setTimestamp(LocalDateTime timestamp) { this.timestamp = timestamp; }
+    public String getModule() { return module; }
+    public void setModule(String module) { this.module = module; }
+    public String getOperation() { return operation; }
+    public void setOperation(String operation) { this.operation = operation; }
+    public String getDetails() { return details; }
+    public void setDetails(String details) { this.details = details; }
+}
+===== ./springapp/src/main/java/com/examly/springapp/model/FoodTruckVendor.java =====
+package com.examly.springapp.model;
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+
+@Entity
+public class FoodTruckVendor {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @NotBlank
+    private String name;
+
+    private String cuisineSpecialties;
+
+    @NotBlank
+    private String operatingRegion;
+
+    private String menuHighlights;
+
+    @Pattern(regexp = "^[6-9]\\d{9}$", message = "Invalid Indian phone number")
+    private String phoneNumber;
+
+    // Link to user
+    @OneToOne
+    @JoinColumn(name = "user_id", nullable = false, unique = true)
+    private User user;
+
+    public FoodTruckVendor() {}
+
+    public FoodTruckVendor(String name, String cuisineSpecialties, String operatingRegion, String menuHighlights, String phoneNumber, User user) {
+        this.name = name;
+        this.cuisineSpecialties = cuisineSpecialties;
+        this.operatingRegion = operatingRegion;
+        this.menuHighlights = menuHighlights;
+        this.phoneNumber = phoneNumber;
+        this.user = user;
+    }
+
+    public Long getId() { return id; }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+    public String getCuisineSpecialties() { return cuisineSpecialties; }
+    public void setCuisineSpecialties(String cuisineSpecialties) { this.cuisineSpecialties = cuisineSpecialties; }
+    public String getOperatingRegion() { return operatingRegion; }
+    public void setOperatingRegion(String operatingRegion) { this.operatingRegion = operatingRegion; }
+    public String getMenuHighlights() { return menuHighlights; }
+    public void setMenuHighlights(String menuHighlights) { this.menuHighlights = menuHighlights; }
+    public String getPhoneNumber() { return phoneNumber; }
+    public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
+}
+===== ./springapp/src/main/java/com/examly/springapp/security/CustomUserDetailsService.java =====
+package com.examly.springapp.security;
+
+import com.examly.springapp.model.User;
+import com.examly.springapp.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+@Service
+public class CustomUserDetailsService implements UserDetailsService {
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + email));
+
+        return new org.springframework.security.core.userdetails.User(
+                user.getEmail(),
+                user.getPassword(),
+                user.isVerified(), // only allow if verified
+                true,
+                true,
+                true,
+                user.getAuthorities()
+        );
+    }
+}
+===== ./springapp/src/main/java/com/examly/springapp/security/SecurityConfig.java =====
+package com.examly.springapp.security;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
+import java.util.List;
+
+@Configuration
+@EnableWebSecurity
+@EnableMethodSecurity
+public class SecurityConfig {
+
+    @Autowired private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+    @Autowired private JwtRequestFilter jwtRequestFilter;
+    @Autowired private CustomUserDetailsService customUserDetailsService;
+
+    private static final String[] PUBLIC_URLS = {
+        "/api/auth/login",
+        "/api/auth/register",
+        "/api/auth/verify",
+        "/v3/api-docs/**",
+        "/swagger-ui/**",
+        "/swagger-resources/**"
+    };
+
+    @Bean
+    public PasswordEncoder passwordEncoder() { return new BCryptPasswordEncoder(); }
+
+    @Bean
+    public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
+        return http.getSharedObject(AuthenticationManagerBuilder.class)
+                   .userDetailsService(customUserDetailsService)
+                   .passwordEncoder(passwordEncoder())
+                   .and()
+                   .build();
+    }
+
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.csrf(csrf -> csrf.disable())
+            .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+            .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .exceptionHandling(ex -> ex.authenticationEntryPoint(jwtAuthenticationEntryPoint))
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers(PUBLIC_URLS).permitAll()
+                .requestMatchers("/api/admin/**").hasRole("ADMIN")
+                .requestMatchers("/api/vendors/**").hasAnyRole("VENDOR","ADMIN","REVIEWER","INSPECTOR")
+                .requestMatchers("/api/reviewer/**").hasAnyRole("REVIEWER","ADMIN")
+                .requestMatchers("/api/inspector/**").hasAnyRole("INSPECTOR","ADMIN")
+                .anyRequest().authenticated()
+            )
+            .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+
+        return http.build();
+    }
+
+    @Bean
+    public UrlBasedCorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowCredentials(true);
+        config.setAllowedOrigins(List.of("http://localhost:8081"));
+        config.setAllowedHeaders(Arrays.asList("Origin","Content-Type","Accept","Authorization"));
+        config.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE","OPTIONS"));
+        config.setMaxAge(3600L);
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", config);
+        return source;
+    }
+}
+===== ./springapp/src/main/java/com/examly/springapp/security/JwtUtil.java =====
+package com.examly.springapp.security;
+
+import io.jsonwebtoken.*;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
+
+import javax.crypto.spec.SecretKeySpec;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
+
+@Component
+public class JwtUtil {
+
+    @Value("${jwt.secret}")
+    private String SECRET_KEY;
+
+    @Value("${jwt.expiration}")
+    private long jwtExpirationMs;
+
+    private SecretKeySpec getSigningKey() {
+        return new SecretKeySpec(SECRET_KEY.getBytes(), SignatureAlgorithm.HS256.getJcaName());
+    }
+
+    public String extractUsername(String token) {
+        return extractClaim(token, Claims::getSubject);
+    }
+
+    public Date extractExpiration(String token) {
+        return extractClaim(token, Claims::getExpiration);
+    }
+
+    public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
+        final Claims claims = extractAllClaims(token);
+        return claimsResolver.apply(claims);
+    }
+
+    private Claims extractAllClaims(String token) {
+        return Jwts.parserBuilder().setSigningKey(getSigningKey()).build().parseClaimsJws(token).getBody();
+    }
+
+    private Boolean isTokenExpired(String token) {
+        return extractExpiration(token).before(new Date());
+    }
+
+    public String generateToken(UserDetails userDetails) {
+        Map<String, Object> claims = new HashMap<>();
+        return createToken(claims, userDetails.getUsername());
+    }
+
+    private String createToken(Map<String, Object> claims, String subject) {
+        return Jwts.builder()
+                .setClaims(claims)
+                .setSubject(subject)
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + jwtExpirationMs))
+                .signWith(getSigningKey(), SignatureAlgorithm.HS256)
+                .compact();
+    }
+
+    public Boolean validateToken(String token, UserDetails userDetails) {
+        final String username = extractUsername(token);
+        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+    }
+}
+===== ./springapp/src/main/java/com/examly/springapp/security/JwtRequestFilter.java =====
+package com.examly.springapp.security;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.stereotype.Component;
+import org.springframework.web.filter.OncePerRequestFilter;
+
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+@Component
+public class JwtRequestFilter extends OncePerRequestFilter {
+
+    @Autowired
+    private CustomUserDetailsService userDetailsService;
+
+    @Autowired
+    private JwtUtil jwtUtil;
+
+    @Override
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
+            throws ServletException, IOException {
+
+        final String authorizationHeader = request.getHeader("Authorization");
+        String username = null, jwt = null;
+
+        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+            jwt = authorizationHeader.substring(7);
+            username = jwtUtil.extractUsername(jwt);
+        }
+
+        if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+            UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
+
+            if (jwtUtil.validateToken(jwt, userDetails)) {
+                UsernamePasswordAuthenticationToken auth =
+                        new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                auth.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                SecurityContextHolder.getContext().setAuthentication(auth);
+            }
+        }
+        chain.doFilter(request, response);
+    }
+}
+===== ./springapp/src/main/java/com/examly/springapp/security/AuthResponse.java =====
+package com.examly.springapp.security;
+
+public class AuthResponse {
+    private final String jwt;
+
+    public AuthResponse(String jwt) { this.jwt = jwt; }
+    public String getJwt() { return jwt; }
+}
+===== ./springapp/src/main/java/com/examly/springapp/security/AuthRequest.java =====
+package com.examly.springapp.security;
+
+public class AuthRequest {
+    private String email;
+    private String password;
+
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
+
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
+}
+===== ./springapp/src/main/java/com/examly/springapp/security/JwtAuthenticationEntryPoint.java =====
+package com.examly.springapp.security;
+
+import java.io.IOException;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.stereotype.Component;
+
+@Component
+public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
+    @Override
+    public void commence(HttpServletRequest request,
+                         HttpServletResponse response,
+                         AuthenticationException authException)
+            throws IOException, ServletException {
+        response.sendError(HttpServletResponse.SC_UNAUTHORIZED,
+                "Unauthorized: " + authException.getMessage());
+    }
+}
+===== ./springapp/src/main/java/com/examly/springapp/controller/NotificationController.java =====
+package com.examly.springapp.controller;
+
+import com.examly.springapp.model.Notification;
+import com.examly.springapp.model.User;
+import com.examly.springapp.service.NotificationService;
+import com.examly.springapp.service.UserService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.UUID;
+
+@RestController
+@RequestMapping("/api/notifications")
+public class NotificationController {
+
+    private final NotificationService notificationService;
+    private final UserService userService;
+
+    public NotificationController(NotificationService notificationService, UserService userService) {
+        this.notificationService = notificationService;
+        this.userService = userService;
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Notification>> getNotifications(@AuthenticationPrincipal UserDetails userDetails) {
+        User user = userService.findByEmail(userDetails.getUsername());
+        List<Notification> notifications = notificationService.getNotificationsByUserId(user.getId());
+        return ResponseEntity.ok(notifications);
+    }
+
+    @PutMapping("/{id}/read")
+    public ResponseEntity<Notification> markNotificationAsRead(@PathVariable UUID id) {
+        Notification notification = notificationService.markAsRead(id);
+        return ResponseEntity.ok(notification);
+    }
+}
+===== ./springapp/src/main/java/com/examly/springapp/controller/ApplicationController.java =====
+package com.examly.springapp.controller;
+
+import com.examly.springapp.model.Application;
+import com.examly.springapp.model.ApplicationStatus;
+import com.examly.springapp.model.Role;
+import com.examly.springapp.model.User;
+import com.examly.springapp.service.ApplicationService;
+import com.examly.springapp.service.UserService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.UUID;
+
+@RestController
+@RequestMapping("/api/applications")
+public class ApplicationController {
+
+    private final ApplicationService applicationService;
+    private final UserService userService;
+
+    public ApplicationController(ApplicationService applicationService, UserService userService) {
+        this.applicationService = applicationService;
+        this.userService = userService;
+    }
+
+    @PostMapping("/submit")
+    @PreAuthorize("hasRole('VENDOR')")
+    public ResponseEntity<Application> submitApplication(@AuthenticationPrincipal UserDetails userDetails,
+                                                         @RequestBody(required = false) Application application) {
+        User user = userService.findByEmail(userDetails.getUsername());
+        Application saved = applicationService.submitApplication(user.getId(), application == null ? new Application() : application);
+        return ResponseEntity.ok(saved);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Application>> getApplications(@AuthenticationPrincipal UserDetails userDetails) {
+        User user = userService.findByEmail(userDetails.getUsername());
+        Role role = user.getRole();
+        Long userId = user.getId();
+        List<Application> applications = applicationService.getApplicationsByUserRole(role, userId);
+        return ResponseEntity.ok(applications);
+    }
+
+    @PutMapping("/{id}/status")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Application> updateStatus(@PathVariable UUID id, @RequestParam ApplicationStatus status) {
+        Application updated = applicationService.updateApplicationStatus(id, status);
+        return ResponseEntity.ok(updated);
+    }
+
+    @PutMapping("/{id}/assignReviewer")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Application> assignReviewer(@PathVariable UUID id, @RequestParam Long reviewerId) {
+        Application updated = applicationService.assignReviewer(id, reviewerId);
+        return ResponseEntity.ok(updated);
+    }
+
+    @PutMapping("/{id}/assignInspector")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Application> assignInspector(@PathVariable UUID id, @RequestParam Long inspectorId) {
+        Application updated = applicationService.assignInspector(id, inspectorId);
+        return ResponseEntity.ok(updated);
+    }
+
+    @PutMapping("/{id}/issueLicense")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Application> issueLicense(@PathVariable UUID id) {
+        Application updated = applicationService.issueLicense(id);
+        return ResponseEntity.ok(updated);
+    }
+
+    @PostMapping("/{id}/renew")
+    @PreAuthorize("hasRole('VENDOR')")
+    public ResponseEntity<Application> renewLicense(@PathVariable UUID id) {
+        Application renewed = applicationService.renewApplication(id);
+        return ResponseEntity.ok(renewed);
+    }
+}
+===== ./springapp/src/main/java/com/examly/springapp/controller/DocumentController.java =====
+package com.examly.springapp.controller;
+
+import com.examly.springapp.model.Document;
+import com.examly.springapp.service.DocumentService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.UUID;
+
+@RestController
+@RequestMapping("/api/documents")
+public class DocumentController {
+
+    private final DocumentService documentService;
+
+    public DocumentController(DocumentService documentService) {
+        this.documentService = documentService;
+    }
+
+    @PostMapping("/{applicationId}/upload")
+    public ResponseEntity<Document> uploadDocument(@PathVariable UUID applicationId,
+                                                   @RequestParam Long userId,
+                                                   @RequestParam("file") MultipartFile file) throws IOException {
+        Document uploaded = documentService.uploadDocument(applicationId, userId, file);
+        return ResponseEntity.ok(uploaded);
+    }
+
+    @GetMapping("/{applicationId}")
+    public ResponseEntity<List<Document>> getDocumentsByApplication(@PathVariable UUID applicationId) {
+        List<Document> documents = documentService.getDocumentsByApplication(applicationId);
+        return ResponseEntity.ok(documents);
+    }
+}
+===== ./springapp/src/main/java/com/examly/springapp/controller/UserController.java =====
+package com.examly.springapp.controller;
+
+import com.examly.springapp.model.User;
+import com.examly.springapp.security.AuthResponse;
+import com.examly.springapp.security.JwtUtil;
+import com.examly.springapp.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/api/auth")
+public class UserController {
+
+    @Autowired
+    private JwtUtil jwtUtil;
+
+    @Autowired
+    private UserService userService;
+
+    @GetMapping("/me")
+    public ResponseEntity<User> getCurrentUser(@AuthenticationPrincipal UserDetails userDetails) {
+        User user = userService.findByEmail(userDetails.getUsername());
+        return ResponseEntity.ok(user);
+    }
+
+    @PostMapping("/refresh")
+    public ResponseEntity<AuthResponse> refreshToken(@AuthenticationPrincipal UserDetails userDetails) {
+        final String jwt = jwtUtil.generateToken(userDetails);
+        return ResponseEntity.ok(new AuthResponse(jwt));
+    }
+}===== ./springapp/src/main/java/com/examly/springapp/controller/ReviewController.java =====
+package com.examly.springapp.controller;
+
+import com.examly.springapp.model.Review;
+import com.examly.springapp.service.ReviewService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.UUID;
+
+@RestController
+@RequestMapping("/api/reviewer/reviews")
+public class ReviewController {
+
+    private final ReviewService reviewService;
+
+    public ReviewController(ReviewService reviewService) {
+        this.reviewService = reviewService;
+    }
+
+    @PostMapping("/{applicationId}/add")
+    public ResponseEntity<Review> addReview(@PathVariable UUID applicationId,
+                                            @RequestParam Long reviewerId,
+                                            @RequestBody Review review) {
+        Review createdReview = reviewService.addReview(applicationId, reviewerId, review);
+        return ResponseEntity.ok(createdReview);
+    }
+
+    @GetMapping("/{applicationId}")
+    public ResponseEntity<List<Review>> getReviewsByApplication(@PathVariable UUID applicationId) {
+        List<Review> reviews = reviewService.getReviewsByApplication(applicationId);
+        return ResponseEntity.ok(reviews);
+    }
+}
+===== ./springapp/src/main/java/com/examly/springapp/controller/AdminUserController.java =====
+package com.examly.springapp.controller;
+
+import com.examly.springapp.model.User;
+import com.examly.springapp.repository.UserRepository;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/admin")
+public class AdminUserController {
+
+    private final UserRepository userRepository;
+
+    public AdminUserController(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    @GetMapping("/users")
+    public ResponseEntity<List<User>> getAllUsers() {
+        return ResponseEntity.ok(userRepository.findAll());
+    }
+}
+===== ./springapp/src/main/java/com/examly/springapp/controller/AuditLogController.java =====
+package com.examly.springapp.controller;
+
+import com.examly.springapp.model.AuditLog;
+import com.examly.springapp.service.AuditLogService;
+import com.examly.springapp.service.UserService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/admin/audit-logs")
+public class AuditLogController {
+
+    private final AuditLogService auditLogService;
+    private final UserService userService;
+
+    public AuditLogController(AuditLogService auditLogService, UserService userService) {
+        this.auditLogService = auditLogService;
+        this.userService = userService;
+    }
+
+    @GetMapping
+    public ResponseEntity<List<AuditLog>> getAllAuditLogs(@AuthenticationPrincipal UserDetails userDetails) {
+        List<AuditLog> logs = auditLogService.getAllLogs();
+        return ResponseEntity.ok(logs);
+    }
+}
+===== ./springapp/src/main/java/com/examly/springapp/controller/AuthController.java =====
+package com.examly.springapp.controller;
+
+import com.examly.springapp.model.Role;
+import com.examly.springapp.model.User;
+import com.examly.springapp.repository.UserRepository;
+import com.examly.springapp.security.JwtUtil;
+import com.examly.springapp.security.AuthRequest;
+import com.examly.springapp.security.AuthResponse;
+import com.examly.springapp.security.CustomUserDetailsService;
+import com.examly.springapp.service.EmailService;
+import com.examly.springapp.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/api/auth")
+@CrossOrigin(origins = "http://localhost:8081")
+public class AuthController {
+
+    @Autowired private AuthenticationManager authenticationManager;
+    @Autowired private JwtUtil jwtUtil;
+    @Autowired private CustomUserDetailsService userDetailsService;
+    @Autowired private PasswordEncoder passwordEncoder;
+    @Autowired private UserRepository userRepository;
+    @Autowired private UserService userService;
+    @Autowired
+private EmailService emailService;
+
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody AuthRequest request) throws Exception {
+        authenticationManager.authenticate(
+            new UsernamePasswordAuthenticationToken(
+                request.getEmail(), request.getPassword()
+            )
+        );
+        final UserDetails userDetails = userDetailsService.loadUserByUsername(request.getEmail());
+        final String jwt = jwtUtil.generateToken(userDetails);
+        return ResponseEntity.ok(new AuthResponse(jwt));
+    }
+
+    @PostMapping("/register")
+public ResponseEntity<?> register(@RequestBody User user) {
+    if (userRepository.existsByEmail(user.getEmail())) {
+        return ResponseEntity.badRequest().body("Email already in use");
+    }
+    if (user.getRole() == null) user.setRole(Role.VENDOR);
+    user.setPassword(passwordEncoder.encode(user.getPassword()));
+    user.setVerified(false);
+    userRepository.save(user);
+
+    // Send verification email
+    String verificationLink = "http://localhost:8081/login?verifyEmail=" + user.getEmail();
+    String subject = "Verify your email";
+    String message = "Please verify your email by clicking the following link: " + verificationLink;
+    emailService.sendSimpleMessage(user.getEmail(), subject, message);
+
+    return ResponseEntity.ok("User registered successfully. Please verify your email.");
+}
+
+    @GetMapping("/verify")
+    public ResponseEntity<?> verify(@RequestParam String email) {
+        userService.verifyUser(email);
+        return ResponseEntity.ok("Account has been successfully verified.");
+    }
+}
+===== ./springapp/src/main/java/com/examly/springapp/controller/SuperAdminController.java =====
+package com.examly.springapp.controller;
+
+import com.examly.springapp.model.User;
+import com.examly.springapp.repository.UserRepository;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/superadmin")
+@PreAuthorize("hasRole('SUPER_ADMIN')")
+public class SuperAdminController {
+
+    private final UserRepository userRepository;
+
+    public SuperAdminController(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    @GetMapping("/users")
+    public ResponseEntity<List<User>> getAllUsers() {
+        return ResponseEntity.ok(userRepository.findAll());
+    }
+
+    // Example additional feature: Change user role
+    @PutMapping("/users/{id}/role")
+    public ResponseEntity<User> changeUserRole(@PathVariable Long id, @RequestParam String role) {
+        User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        try {
+            user.setRole(Enum.valueOf(com.examly.springapp.model.Role.class, role.toUpperCase()));
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();
+        }
+        userRepository.save(user);
+        return ResponseEntity.ok(user);
+    }
+
+    // Admin-level deletion of users
+    @DeleteMapping("/users/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+        if (!userRepository.existsById(id)) {
+            return ResponseEntity.notFound().build();
+        }
+        userRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+}
+===== ./springapp/src/main/java/com/examly/springapp/controller/FoodTruckVendorController.java =====
+package com.examly.springapp.controller;
+
+import com.examly.springapp.model.FoodTruckVendor;
+import com.examly.springapp.model.User;
+import com.examly.springapp.repository.FoodTruckVendorRepo;
+import com.examly.springapp.service.FoodTruckVendorService;
+import com.examly.springapp.service.UserService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+public class FoodTruckVendorController {
+
+    private final FoodTruckVendorService service;
+    private final UserService userService;
+    private final FoodTruckVendorRepo foodTruckVendorRepo;
+
+    public FoodTruckVendorController(FoodTruckVendorService service, UserService userService, FoodTruckVendorRepo foodTruckVendorRepo) {
+        this.service = service;
+        this.userService = userService;
+        this.foodTruckVendorRepo = foodTruckVendorRepo;
+    }
+
+    @PostMapping("/api/vendors")
+    @PreAuthorize("hasRole('VENDOR')")
+    public ResponseEntity<FoodTruckVendor> addVendor(@AuthenticationPrincipal UserDetails userDetails,
+                                                     @RequestBody FoodTruckVendor vendor) {
+        User user = userService.findByEmail(userDetails.getUsername());
+        vendor.setUser(user);
+        return new ResponseEntity<>(service.addVendor(vendor), HttpStatus.CREATED);
+    }
+
+    @GetMapping("/api/vendors/all")
+@PreAuthorize("hasAnyRole('ADMIN','REVIEWER','INSPECTOR')")
+public ResponseEntity<List<FoodTruckVendor>> getAllVendorsPlain() {
+    List<FoodTruckVendor> vendors = foodTruckVendorRepo.findAll();
+    return ResponseEntity.ok(vendors);
+}
+
+
+    @PutMapping("/api/vendors/{id}")
+    @PreAuthorize("hasRole('VENDOR')")
+    public ResponseEntity<FoodTruckVendor> updateVendor(@PathVariable Long id,
+                                                        @RequestBody FoodTruckVendor vendor,
+                                                        @AuthenticationPrincipal UserDetails userDetails) {
+        User user = userService.findByEmail(userDetails.getUsername());
+        vendor.setUser(user);
+        return ResponseEntity.ok(service.updateVendor(id, vendor));
+    }
+
+    @GetMapping("/api/vendors/me")
+    @PreAuthorize("hasRole('VENDOR')")
+    public ResponseEntity<FoodTruckVendor> getMyProfile(@AuthenticationPrincipal UserDetails userDetails) {
+        User user = userService.findByEmail(userDetails.getUsername());
+        FoodTruckVendor vendor = foodTruckVendorRepo.findByUserId(user.getId());
+        if (vendor != null) return ResponseEntity.ok(vendor);
+        return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/api/vendors")
+    @PreAuthorize("hasAnyRole('ADMIN','REVIEWER','INSPECTOR')")
+    public ResponseEntity<Page<FoodTruckVendor>> getAllVendors(@RequestParam(defaultValue = "0") int page,
+                                                               @RequestParam(defaultValue = "10") int size,
+                                                               @RequestParam(defaultValue = "name") String sortBy,
+                                                               @RequestParam(defaultValue = "asc") String direction) {
+        Sort.Direction sortDirection = direction.equalsIgnoreCase("desc") ? Sort.Direction.DESC : Sort.Direction.ASC;
+        Pageable pageable = PageRequest.of(page, size, Sort.by(sortDirection, sortBy));
+        return ResponseEntity.ok(service.getAllVendors(pageable));
+    }
+
+    @DeleteMapping("/api/vendors/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Void> deleteVendor(@PathVariable Long id) {
+        service.deleteVendor(id);
+        return ResponseEntity.noContent().build();
+    }
+}
+===== ./springapp/src/main/java/com/examly/springapp/controller/InspectionController.java =====
+package com.examly.springapp.controller;
+
+import com.examly.springapp.model.Inspection;
+import com.examly.springapp.service.InspectionService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.UUID;
+
+@RestController
+@RequestMapping("/api/inspector/inspections")
+public class InspectionController {
+
+    private final InspectionService inspectionService;
+
+    public InspectionController(InspectionService inspectionService) {
+        this.inspectionService = inspectionService;
+    }
+
+    @PostMapping("/{applicationId}/add")
+    public ResponseEntity<Inspection> addInspection(@PathVariable UUID applicationId,
+                                                    @RequestParam Long inspectorId,
+                                                    @RequestBody Inspection inspection) {
+        Inspection createdInspection = inspectionService.addInspection(applicationId, inspectorId, inspection);
+        return ResponseEntity.ok(createdInspection);
+    }
+
+    @GetMapping("/{applicationId}")
+    public ResponseEntity<List<Inspection>> getInspectionsByApplication(@PathVariable UUID applicationId) {
+        List<Inspection> inspections = inspectionService.getInspectionsByApplication(applicationId);
+        return ResponseEntity.ok(inspections);
+    }
+}
+===== ./springapp/src/main/java/com/examly/springapp/configuration/DataInitializer.java =====
+package com.examly.springapp.configuration;
+
+import com.examly.springapp.model.User;
+import com.examly.springapp.model.Role;
+import com.examly.springapp.repository.UserRepository;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+@Configuration
+public class DataInitializer {
+
+    @Bean
+    CommandLineRunner initDatabase(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+        return args -> {
+            if (userRepository.count() == 0) {
+                // Create admin
+                User admin = new User();
+                admin.setEmail("admin@example.com");
+                admin.setPassword(passwordEncoder.encode("admin123"));
+                admin.setRole(Role.ADMIN);
+                admin.setVerified(true);
+                userRepository.save(admin);
+
+                // Reviewer
+                User reviewer = new User();
+                reviewer.setEmail("reviewer@example.com");
+                reviewer.setPassword(passwordEncoder.encode("reviewer123"));
+                reviewer.setRole(Role.REVIEWER);
+                reviewer.setVerified(true);
+                userRepository.save(reviewer);
+
+                // Inspector
+                User inspector = new User();
+                inspector.setEmail("inspector@example.com");
+                inspector.setPassword(passwordEncoder.encode("inspector123"));
+                inspector.setRole(Role.INSPECTOR);
+                inspector.setVerified(true);
+                userRepository.save(inspector);
+
+                // Vendor
+                User vendor = new User();
+                vendor.setEmail("vendor@example.com");
+                vendor.setPassword(passwordEncoder.encode("vendor123"));
+                vendor.setRole(Role.VENDOR);
+                vendor.setVerified(true);
+                userRepository.save(vendor);
+
+                // Super Admin
+                User superAdmin = new User();
+                superAdmin.setEmail("superadmin@example.com");
+                superAdmin.setPassword(passwordEncoder.encode("superadmin123"));
+                superAdmin.setRole(Role.SUPER_ADMIN);
+                superAdmin.setVerified(true);
+                userRepository.save(superAdmin);
+            }
+        };
+    }
+}
+===== ./springapp/src/main/java/com/examly/springapp/configuration/AsyncConfig.java =====
+package com.examly.springapp.configuration;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import java.util.concurrent.Executor;
+
+@Configuration
+@EnableAsync
+public class AsyncConfig {
+
+    @Bean(name = "taskExecutor")
+    public Executor taskExecutor() {
+      ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+      executor.setCorePoolSize(2);
+      executor.setMaxPoolSize(5);
+      executor.setQueueCapacity(500);
+      executor.setThreadNamePrefix("EmailSender-");
+      executor.initialize();
+      return executor;
+    }
+}
+===== ./springapp/src/main/java/com/examly/springapp/configuration/MaintenanceTasks.java =====
+package com.examly.springapp.configuration;
+
+import com.examly.springapp.repository.UserRepository;
+import com.examly.springapp.repository.ApplicationRepository;
+import com.examly.springapp.model.Application;
+import com.examly.springapp.model.ApplicationStatus;
+import com.examly.springapp.service.EmailService;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+@Component
+public class MaintenanceTasks {
+
+    private final UserRepository userRepository;
+    private final ApplicationRepository applicationRepository;
+    private final EmailService emailService;
+
+    public MaintenanceTasks(UserRepository userRepository,
+                            ApplicationRepository appRepo,
+                            EmailService emailService) {
+        this.userRepository = userRepository;
+        this.applicationRepository = appRepo;
+        this.emailService = emailService;
+    }
+
+    // Clean up unverified accounts older than 7 days
+    @Scheduled(cron = "0 0 2 * * ?")
+    public void cleanUnverifiedAccounts() {
+        userRepository.findAll().stream()
+                .filter(u -> !u.isVerified())
+                .forEach(userRepository::delete);
+    }
+
+    // Send renewal reminders for licenses expiring in 30 days
+    @Scheduled(cron = "0 0 10 * * ?")
+    public void sendRenewalReminders() {
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime expiryThreshold = now.plusDays(30);
+        List<Application> applications = applicationRepository.findAll();
+        for (Application app : applications) {
+            if (app.getStatus() == ApplicationStatus.LICENSE_ISSUED &&
+                app.getLicenseExpiryDate() != null &&
+                app.getLicenseExpiryDate().isBefore(expiryThreshold)) {
+                emailService.sendSimpleMessage(
+                    app.getUser().getEmail(),
+                    "License Renewal Reminder",
+                    "Your license " + app.getLicenseNumber() +
+                    " will expire on " + app.getLicenseExpiryDate() +
+                    ". Please renew in time."
+                );
+            }
+        }
+    }
+}
+===== ./springapp/src/main/java/com/examly/springapp/SpringappApplication.java =====
+package com.examly.springapp;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
+
+@SpringBootApplication
+@EnableAsync
+@EnableScheduling
+public class SpringappApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(SpringappApplication.class, args);
+    }
+
+}
+===== ./reactapp/src/reportWebVitals.js =====
+const reportWebVitals = onPerfEntry => {
+  if (onPerfEntry && onPerfEntry instanceof Function) {
+    import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
+      getCLS(onPerfEntry);
+      getFID(onPerfEntry);
+      getFCP(onPerfEntry);
+      getLCP(onPerfEntry);
+      getTTFB(onPerfEntry);
+    });
+  }
+};
+
+export default reportWebVitals;
+===== ./reactapp/src/App.css =====
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f9f9f9;
+}
+
+h1, h2 {
+  color: #333;
+  text-align: center;
+}
+===== ./reactapp/src/components/ReviewerDashboard.jsx =====
+import { useEffect, useState } from 'react';
+import api from '../api';
+import './ReviewerDashboard.css';
+
+function ReviewerDashboard() {
+  const [applications, setApplications] = useState([]);
+  const [selectedApp, setSelectedApp] = useState(null);
+  const [comments, setComments] = useState('');
+  const [status, setStatus] = useState('');
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    const fetchApps = async () => {
+      try {
+        const res = await api.get('/api/applications');
+        setApplications(res.data);
+      } catch {
+        setError('Failed to fetch applications.');
+      }
+    };
+    fetchApps();
+  }, [selectedApp]);
+
+  const openApp = app => {
+    setSelectedApp(app);
+    setComments('');
+    setStatus('');
+    setError('');
+  };
+
+  const submitReview = async () => {
+    if (!status) {
+      setError('Select a review action.');
+      return;
+    }
+    if (status === 'REJECTED' && !comments.trim()) {
+      setError('Comments required when rejecting.');
+      return;
+    }
+    try {
+      await api.post(`/api/reviewer/reviews/${selectedApp.id}/add`, {
+        status,
+        comments
+      }, { params: { reviewerId: selectedApp.assignedReviewer?.id } });
+      setSelectedApp(null);
+    } catch {
+      setError('Failed to submit review.');
+    }
+  };
+
+  return (
+    <div className="reviewer-dashboard-container">
+      <h2>Reviewer Dashboard</h2>
+      {selectedApp ? (
+        <div className="review-details">
+          <h3>Application Details</h3>
+          <p><b>Vendor:</b> {selectedApp.user?.email}</p>
+          <p><b>Status:</b> {selectedApp.status}</p>
+          <p><b>Submission:</b> {new Date(selectedApp.submissionDate).toLocaleString()}</p>
+          <textarea placeholder="Enter comments (mandatory on rejection)"
+              value={comments} onChange={e=>setComments(e.target.value)} />
+          <div className="review-actions">
+            <button onClick={()=>{setStatus('APPROVED'); submitReview();}}>Approve</button>
+            <button onClick={()=>{setStatus('REJECTED'); submitReview();}}>Reject</button>
+            <button onClick={()=>{setStatus('REQUEST_MORE_INFO'); submitReview();}}>Request Info</button>
+            <button onClick={()=>setSelectedApp(null)}>Back</button>
+          </div>
+          {error && <p className="error">{error}</p>}
+        </div>
+      ):(
+        <table className="reviewer-applications-table">
+          <thead><tr><th>ID</th><th>Vendor</th><th>Status</th><th>Submission</th><th></th></tr></thead>
+          <tbody>
+            {applications.length===0 ? <tr><td colSpan="5">No assigned applications</td></tr>
+              : applications.map(app=>
+                <tr key={app.id}>
+                  <td>{app.id}</td>
+                  <td>{app.user?.email}</td>
+                  <td>{app.status}</td>
+                  <td>{new Date(app.submissionDate).toLocaleString()}</td>
+                  <td><button onClick={()=>openApp(app)}>Review</button></td>
+                </tr>)}
+          </tbody>
+        </table>
+      )}
+    </div>
+  );
+}
+export default ReviewerDashboard;
+===== ./reactapp/src/components/NavBar.css =====
+nav {
+    background-color: #6a1b9a;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav h2 {
+    color: white;
+    margin: 0;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin: 0;
+    align-items: center;
+}
+
+nav ul li a, nav ul li button {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+nav ul li a:hover, nav ul li button:hover {
+    text-decoration: underline;
+}
+
+.badge {
+    background-color: #e53935;
+    color: white;
+    border-radius: 50%;
+    padding: 0.2em 0.6em;
+    font-weight: bold;
+    font-size: 0.8rem;
+    position: absolute;
+    top: -8px;
+    right: -15px;
+}
+===== ./reactapp/src/components/DisplayFoodTruck.jsx =====
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import api from '../api';
+import './DisplayFoodTruck.css';
+
+function DisplayFoodTruck() {
+    const [vendors, setVendors] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
+
+    const fetchVendors = async () => {
+    setLoading(true);
+    setError('');
+    try {
+        // Call new endpoint returning plain array
+        const response = await api.get('/api/vendors/all');
+        setVendors(Array.isArray(response.data) ? response.data : []);
+    } catch (err) {
+        setError('Failed to fetch vendors. Please try again.');
+        console.error("Error fetching vendors:", err);
+        setVendors([]);
+    } finally {
+        setLoading(false);
+    }
+};
+
+
+    const handleDelete = async (id) => {
+        if (!window.confirm('Are you sure you want to delete this vendor?')) return;
+        try {
+            await api.delete(`/api/vendors/${id}`);
+            fetchVendors();
+        } catch (err) {
+            console.error("Error deleting vendor:", err);
+            alert('Failed to delete vendor');
+        }
+    };
+
+    useEffect(() => {
+        fetchVendors();
+    }, []);
+
+    return (
+        <div className="vendor-container">
+            {/* ✅ Heading updated to match test expectation */}
+            <h2>Submitted Food Truck Vendor Applications</h2>
+
+            {error && <div className="error-message">{error}</div>}
+
+            {loading ? (
+                <div className="loading">Loading...</div>
+            ) : (
+                <>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Cuisine</th>
+                                <th>Region</th>
+                                <th>Menu Highlights</th>
+                                <th>Phone</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {vendors.map(vendor => (
+                                <tr key={vendor.id}>
+                                    <td>{vendor.name}</td>
+                                    <td>{vendor.cuisineSpecialties}</td>
+                                    <td>{vendor.operatingRegion}</td>
+                                    <td>{vendor.menuHighlights}</td>
+                                    <td>{vendor.phoneNumber}</td>
+                                    <td>
+                                        <button 
+                                            onClick={() => handleDelete(vendor.id)}
+                                            className="delete-btn"
+                                        >
+                                            Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
+                            {vendors.length === 0 && (
+                                <tr>
+                                    <td colSpan="6">No vendors available</td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </table>
+                </>
+            )}
+        </div>
+    );
+}
+
+export default DisplayFoodTruck;
+===== ./reactapp/src/components/AuditLogs.css =====
+.audit-logs-container {
+  max-width: 1150px;
+  margin: 2rem auto;
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 0.8rem;
+  text-align: left;
+}
+
+tbody tr:hover {
+  background-color: #f5f5f5;
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.pagination-controls button {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.pagination-controls button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.error {
+  color: #d32f2f;
+  margin-bottom: 1rem;
+}
+===== ./reactapp/src/components/ApplyForm.css =====
+.form-card {
+  max-width: 410px;
+  margin: 3rem auto;
+  background: #fff;
+  padding: 2.5rem 2.5rem 2rem 2.5rem;
+  border-radius: 14px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.16);
+  text-align: left;
+}
+
+.form-title {
+  text-align: center;
+  margin-bottom: 1.3rem;
+  font-weight: bold;
+  font-size: 1.32rem;
+}
+
+form label {
+  display: block;
+  margin-top: 1.1rem;
+  font-weight: 600;
+}
+
+form input,
+form select,
+form textarea {
+  width: 100%;
+  padding: 0.6rem;
+  margin-top: 0.3rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  margin-bottom: 0.1rem;
+  font-family: inherit;
+}
+
+form textarea {
+  resize: none;
+  min-height: 56px;
+  font-size: 1rem;
+}
+
+.error {
+  color: red;
+  font-size: 0.98rem;
+  margin: 0.25rem 0 0;
+}
+
+.error.red {
+  color: #e53935;
+}
+
+.button-row {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1.1rem;
+  margin-top: 2rem;
+}
+
+.submit-btn {
+  background-color: #3f51b5;
+  color: white;
+  padding: 0.6rem 1.3rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 1.08rem;
+}
+
+.submit-btn:hover {
+  background-color: #223390;
+}
+
+.back-btn {
+  background-color: #e53935;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 1.03rem;
+}
+
+.back-btn:hover {
+  background-color: #a02621;
+}
+
+.success-modal {
+  position: fixed;
+  z-index: 100;
+  left: 0; top: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.success-modal-content {
+  background: #fff;
+  padding: 2.3rem 2.5rem;
+  border-radius: 13px;
+  box-shadow: 0 2px 15px rgba(70,70,70,0.14);
+  text-align: center;
+}
+===== ./reactapp/src/components/VendorProfile.jsx =====
+import { useEffect, useState } from 'react';
+import api from '../api';
+import './ApplyForm.css';
+
+function VendorProfile() {
+  const [profile, setProfile] = useState({
+    name: '',
+    cuisineSpecialties: '',
+    operatingRegion: '',
+    menuHighlights: '',
+    phoneNumber: '',
+  });
+  const [loading, setLoading] = useState(true);
+  const [errors, setErrors] = useState({});
+  const [message, setMessage] = useState('');
+  const [profileId, setProfileId] = useState(null);
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const res = await api.get('/api/vendors/me');
+        if (res.status === 200 && res.data) {
+          setProfileId(res.data.id);
+          setProfile({
+            name: res.data.name || '',
+            cuisineSpecialties: res.data.cuisineSpecialties || '',
+            operatingRegion: res.data.operatingRegion || '',
+            menuHighlights: res.data.menuHighlights || '',
+            phoneNumber: res.data.phoneNumber || '',
+          });
+        }
+      } catch (error) {
+        if (!(error.response && error.response.status === 404)) {
+          alert('Error loading profile. Please try again later.');
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProfile();
+  }, []);
+
+  const validate = () => {
+    const err = {};
+    if (!profile.name.trim()) err.name = 'Name is required';
+    if (!profile.cuisineSpecialties.trim()) err.cuisineSpecialties = 'Cuisine Specialties are required';
+    if (!profile.operatingRegion) err.operatingRegion = 'Operating Region is required';
+    if (!profile.menuHighlights.trim()) err.menuHighlights = 'Menu Highlights are required';
+    if (!profile.phoneNumber.trim()) err.phoneNumber = 'Phone Number is required';
+    else if (!/^[6-9]\d{9}$/.test(profile.phoneNumber)) err.phoneNumber = 'Invalid Indian phone number';
+    setErrors(err);
+    return Object.keys(err).length === 0;
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setProfile(prev => ({ ...prev, [name]: value }));
+    if (errors[name]) setErrors(prev => ({ ...prev, [name]: undefined }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!validate()) return;
+
+    try {
+      if (profileId) {
+        await api.put(`/api/vendors/${profileId}`, profile);
+      } else {
+        await api.post('/api/vendors', profile);
+      }
+      setMessage('Profile saved successfully!');
+    } catch {
+      setMessage('Failed to save profile. Please try again.');
+    }
+  };
+
+  if (loading) return <p>Loading your profile...</p>;
+
+  return (
+    <div className="form-container">
+      <h2>Vendor Profile</h2>
+      {message && <p>{message}</p>}
+      <form onSubmit={handleSubmit} noValidate>
+        <label>Name:</label>
+        <input name="name" value={profile.name} onChange={handleChange} />
+        {errors.name && <span className="error">{errors.name}</span>}
+
+        <label>Cuisine Specialties:</label>
+        <input name="cuisineSpecialties" value={profile.cuisineSpecialties} onChange={handleChange} />
+        {errors.cuisineSpecialties && <span className="error">{errors.cuisineSpecialties}</span>}
+
+        <label>Operating Region:</label>
+        <select name="operatingRegion" value={profile.operatingRegion} onChange={handleChange}>
+          <option value="">Select Region</option>
+          <option value="Chennai">Chennai</option>
+          <option value="Bangalore">Bangalore</option>
+        </select>
+        {errors.operatingRegion && <span className="error">{errors.operatingRegion}</span>}
+
+        <label>Menu Highlights:</label>
+        <textarea name="menuHighlights" value={profile.menuHighlights} onChange={handleChange} />
+        {errors.menuHighlights && <span className="error">{errors.menuHighlights}</span>}
+
+        <label>Phone Number:</label>
+        <input name="phoneNumber" value={profile.phoneNumber} onChange={handleChange} maxLength="10" />
+        {errors.phoneNumber && <span className="error">{errors.phoneNumber}</span>}
+
+        <button type="submit">Save Profile</button>
+      </form>
+    </div>
+  );
+}
+
+export default VendorProfile;
+===== ./reactapp/src/components/InspectorDashboard.css =====
+.inspector-dashboard-container {
+  width: 90%;
+  max-width: 900px;
+  margin: 2rem auto;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgb(0 0 0 / 0.1);
+}
+
+.inspector-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.inspector-table th, .inspector-table td {
+  padding: 1rem;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.inspector-table tbody tr:hover {
+  background-color: #f0f0f0;
+}
+
+.inspection-details textarea,
+.inspection-details select {
+  width: 100%;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  resize: vertical;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.actions button {
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.error {
+  color: #d32f2f;
+  margin-top: 0.5rem;
+}
+===== ./reactapp/src/components/ApplyForm.jsx =====
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import api from '../api';
+import './ApplyForm.css';
+
+function ApplyForm() {
+  const [formData, setFormData] = useState({ name:'', cuisineSpecialties:'', operatingRegion:'', menuHighlights:'', phoneNumber:'' });
+  const [errors, setErrors] = useState({});
+  const [loadingProfile, setLoading] = useState(true);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(()=>{
+    api.get('/api/vendors/me')
+      .then(res => setFormData(res.data))
+      .catch(()=>{})
+      .finally(()=>setLoading(false));
+  },[]);
+
+  const validate = () => {
+    const err={};
+    if (!formData.name.trim()) err.name="Name required";
+    if (!formData.operatingRegion) err.operatingRegion="Region required";
+    if (!/^[6-9]\d{9}$/.test(formData.phoneNumber)) err.phoneNumber="Invalid phone number";
+    return err;
+  };
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+    const err = validate();
+    if (Object.keys(err).length) { setErrors(err); return; }
+    try {
+      await api.post('/api/vendors', formData);
+      await api.post('/api/applications/submit', {});
+      setShowSuccess(true);
+      setTimeout(()=>navigate('/vendor/dashboard'),2000);
+    } catch { alert("Failed, check profile/application"); }
+  };
+
+  if (loadingProfile) return <p>Loading...</p>;
+  if (showSuccess) return <div className="success-modal"><div className="success-modal-content"><h3>Application submitted!</h3></div></div>;
+
+  return (
+    <div className="form-container">
+      <h2>Apply to Become a Food Truck Vendor</h2>
+      <form onSubmit={handleSubmit}>
+        <label>Name:</label><input value={formData.name} onChange={e=>setFormData({...formData,name:e.target.value})}/>
+        <label>Cuisine Specialties:</label><input value={formData.cuisineSpecialties} onChange={e=>setFormData({...formData,cuisineSpecialties:e.target.value})}/>
+        <label>Region:</label>
+        <select value={formData.operatingRegion} onChange={e=>setFormData({...formData,operatingRegion:e.target.value})}>
+          <option value="">Select</option>
+          <option value="Chennai">Chennai</option>
+          <option value="Bangalore">Bangalore</option>
+        </select>
+        <label>Menu:</label><textarea value={formData.menuHighlights} onChange={e=>setFormData({...formData,menuHighlights:e.target.value})}/>
+        <label>Phone:</label><input value={formData.phoneNumber} onChange={e=>setFormData({...formData,phoneNumber:e.target.value})}/>
+        <button className="submit-btn">Submit</button>
+      </form>
+    </div>
+  );
+}
+export default ApplyForm;
+===== ./reactapp/src/components/Notifications.css =====
+.notifications-container {
+  max-width: 700px;
+  margin: 2rem auto;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.notifications-container ul {
+  list-style: none;
+  padding: 0;
+}
+
+.notifications-container li {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+.notifications-container li:hover {
+  background-color: #f4f4f4;
+}
+
+.error {
+  color: red;
+  margin-bottom: 1rem;
+}
+===== ./reactapp/src/components/VendorDashboard.jsx =====
+import { useState, useEffect } from 'react';
+import api from '../api';
+import './VendorDashboard.css';
+
+function VendorDashboard() {
+  const [apps, setApps] = useState([]);
+  const [loading,setLoading]=useState(true);
+
+  useEffect(()=>{
+    api.get('/api/applications').then(res=>setApps(res.data)).finally(()=>setLoading(false));
+  },[]);
+
+  return (
+    <div className="vendor-dashboard-container">
+      <h2>Your Applications</h2>
+      {loading? <p>Loading...</p>:
+      <table className="vendor-applications-table">
+        <thead><tr><th>ID</th><th>Status</th><th>Submitted</th><th>License</th><th>Expiry</th></tr></thead>
+        <tbody>
+          {apps.length===0? <tr><td colSpan="5">No applications</td></tr>:
+          apps.map(a=><tr key={a.id}>
+            <td>{a.id}</td><td>{a.status}</td><td>{a.submissionDate ? new Date(a.submissionDate).toLocaleString(): '-'}</td>
+            <td>{a.licenseNumber||'-'}</td><td>{a.licenseExpiryDate? new Date(a.licenseExpiryDate).toLocaleDateString(): '-'}</td>
+          </tr>)}
+        </tbody>
+      </table>}
+    </div>
+  );
+}
+export default VendorDashboard;
+===== ./reactapp/src/components/Login.jsx =====
+import { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useAuth } from './AuthContext';
+import './Auth.css';
+
+function Login() {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const [successMessage, setSuccessMessage] = useState('');
+    const { login } = useAuth();
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    if (location.state?.successMessage) {
+        setSuccessMessage(location.state.successMessage);
+        window.history.replaceState({}, document.title);
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setError('');
+        const ok = await login(email, password);
+        if (ok) navigate('/');
+        else setError('Invalid email or password');
+    };
+
+    return (
+        <div className="auth-container">
+            <div className="auth-form">
+                <h2>Login</h2>
+                {successMessage && <div className="success-message">{successMessage}</div>}
+                {error && <div className="error-message">{error}</div>}
+                <form onSubmit={handleSubmit}>
+                    <label>Email:</label>
+                    <input type="email" value={email} onChange={e=>setEmail(e.target.value)} required/>
+                    <label>Password:</label>
+                    <input type="password" value={password} onChange={e=>setPassword(e.target.value)} required/>
+                    <button className="auth-button">Login</button>
+                </form>
+                <p className="auth-link">Don't have an account? <span onClick={()=>navigate('/register')}>Register</span></p>
+            </div>
+        </div>
+    );
+}
+export default Login;
+===== ./reactapp/src/components/VendorDashboard.css =====
+.vendor-dashboard-container {
+  width: 90%;
+  max-width: 900px;
+  margin: 2rem auto;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgb(0 0 0 / 0.1);
+}
+
+.vendor-applications-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.vendor-applications-table th,
+.vendor-applications-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #ccc;
+}
+
+.vendor-applications-table tbody tr:hover {
+  background-color: #f5f5f5;
+}
+
+.error {
+  color: red;
+  margin-top: 1rem;
+}
+===== ./reactapp/src/components/AdminDashboard.jsx =====
+import { useEffect, useState } from 'react';
+import api from '../api';
+import './AdminDashboard.css';
+
+function AdminDashboard() {
+ const [apps,setApps]=useState([]), [users,setUsers]=useState([]);
+ const [selected,setSelected]=useState(null);
+ const [reviewerId,setReviewerId]=useState(""), [inspectorId,setInspectorId]=useState("");
+
+ useEffect(()=>{ api.get('/api/applications').then(res=>setApps(res.data)); api.get('/api/admin/users').then(res=>setUsers(res.data));},[]);
+
+ const assignReviewer=()=> api.put(`/api/applications/${selected.id}/assignReviewer`, null,{params:{reviewerId}})
+       .then(()=>alert("Assigned Reviewer"));
+ const assignInspector=()=> api.put(`/api/applications/${selected.id}/assignInspector`, null,{params:{inspectorId}})
+       .then(()=>alert("Assigned Inspector"));
+ const issueLicense=()=> api.put(`/api/applications/${selected.id}/issueLicense`).then(()=>alert("License Issued"));
+
+ return (
+   <div className="admin-dashboard-container">
+     <h2>Admin Dashboard</h2>
+     <table><thead><tr><th>ID</th><th>Vendor</th><th>Status</th><th>Reviewer</th><th>Inspector</th><th></th></tr></thead>
+     <tbody>{apps.map(a=><tr key={a.id}><td>{a.id}</td><td>{a.user?.email}</td><td>{a.status}</td>
+     <td>{a.assignedReviewer?.email || '-'}</td><td>{a.assignedInspector?.email || '-'}</td>
+     <td><input type="radio" checked={selected?.id===a.id} onChange={()=>setSelected(a)} /></td></tr>)}</tbody></table>
+     {selected && <>
+        <select value={reviewerId} onChange={e=>setReviewerId(e.target.value)}><option>Select Reviewer</option>
+        {users.filter(u=>u.role==='REVIEWER').map(u=><option key={u.id} value={u.id}>{u.email}</option>)} </select>
+        <button onClick={assignReviewer}>Assign Reviewer</button>
+        <select value={inspectorId} onChange={e=>setInspectorId(e.target.value)}><option>Select Inspector</option>
+        {users.filter(u=>u.role==='INSPECTOR').map(u=><option key={u.id} value={u.id}>{u.email}</option>)} </select>
+        <button onClick={assignInspector}>Assign Inspector</button>
+        {selected.status==='APPROVED' && <button onClick={issueLicense}>Issue License</button>}
+     </>}
+   </div>
+ );
+}
+export default AdminDashboard;
+===== ./reactapp/src/components/InspectorDashboard.jsx =====
+import { useEffect, useState } from 'react';
+import api from '../api';
+import './InspectorDashboard.css';
+
+function InspectorDashboard() {
+  const [apps, setApps] = useState([]);
+  const [selected, setSelected] = useState(null);
+  const [notes, setNotes] = useState('');
+  const [result, setResult] = useState('');
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    const fetchApps = async () => {
+      try {
+        const res = await api.get('/api/applications');
+        setApps(res.data);
+      } catch {
+        setError('Failed to fetch inspection tasks');
+      }
+    };
+    fetchApps();
+  }, [selected]);
+
+  const startInspection = app => {
+    setSelected(app);
+    setNotes('');
+    setResult('');
+    setError('');
+  };
+
+  const submitInspection = async () => {
+    if (!notes.trim()) {
+      setError('Notes are required for inspection');
+      return;
+    }
+    if (!result) {
+      setError('Select inspection result');
+      return;
+    }
+    try {
+      await api.post(`/api/inspector/inspections/${selected.id}/add`,
+        { notes, result },
+        { params: { inspectorId: selected.assignedInspector?.id } }
+      );
+      setSelected(null);
+    } catch {
+      setError('Failed to submit inspection');
+    }
+  };
+
+  return (
+    <div className="inspector-dashboard-container">
+      <h2>Inspector Dashboard</h2>
+      {selected ? (
+        <div className="inspection-details">
+          <h3>Inspect Application {selected.id}</h3>
+          <p><strong>Vendor:</strong> {selected.user?.email}</p>
+          <p><strong>Status:</strong> {selected.status}</p>
+          <textarea value={notes} onChange={e=>setNotes(e.target.value)} placeholder="Enter inspection notes"/>
+          <select value={result} onChange={e=>setResult(e.target.value)}>
+            <option value="">Select Result</option>
+            <option value="PASSED">Passed</option>
+            <option value="FAILED">Failed</option>
+            <option value="FOLLOW_UP_REQUIRED">Follow Up Required</option>
+          </select>
+          <div className="actions">
+            <button onClick={submitInspection}>Submit</button>
+            <button onClick={()=>setSelected(null)}>Cancel</button>
+          </div>
+          {error && <p className="error">{error}</p>}
+        </div>
+      ) : (
+        <table className="inspector-table">
+          <thead><tr><th>ID</th><th>Vendor</th><th>Status</th><th>Submission</th><th></th></tr></thead>
+          <tbody>
+            {apps.filter(a => a.status==='INSPECTION_SCHEDULED')
+              .map(a=>
+                <tr key={a.id}>
+                  <td>{a.id}</td>
+                  <td>{a.user?.email}</td>
+                  <td>{a.status}</td>
+                  <td>{new Date(a.submissionDate).toLocaleString()}</td>
+                  <td><button onClick={()=>startInspection(a)}>Inspect</button></td>
+                </tr>)}
+            {apps.length===0 && <tr><td colSpan="5">No inspections assigned</td></tr>}
+          </tbody>
+        </table>
+      )}
+    </div>
+  );
+}
+export default InspectorDashboard;
+===== ./reactapp/src/components/SuperAdminDashboard.jsx =====
+import { useEffect, useState } from 'react';
+import api from '../api';
+import './SuperAdminDashboard.css';
+
+function SuperAdminDashboard() {
+  const [users, setUsers] = useState([]);
+  const [selectedUserId, setSelectedUserId] = useState(null);
+  const [newRole, setNewRole] = useState('');
+  const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
+  const fetchUsers = async () => {
+    try {
+      const res = await api.get('/api/superadmin/users');
+      setUsers(res.data);
+    } catch (err) {
+      setMessage('Failed to fetch users.');
+    }
+  };
+
+  const handleRoleChange = async () => {
+    if (!selectedUserId || !newRole) {
+      setMessage('Select user and role');
+      return;
+    }
+    try {
+      await api.put(`/api/superadmin/users/${selectedUserId}/role`, null, {
+        params: { role: newRole }
+      });
+      setMessage('Role updated');
+      fetchUsers();
+    } catch {
+      setMessage('Failed to update role');
+    }
+  };
+
+  const handleDelete = async (id) => {
+    if (!window.confirm('Delete this user?')) return;
+    try {
+      await api.delete(`/api/superadmin/users/${id}`);
+      setMessage('User deleted');
+      fetchUsers();
+      if (selectedUserId === id) setSelectedUserId(null);
+    } catch {
+      setMessage('Failed to delete user');
+    }
+  };
+
+  return (
+    <div className="superadmin-container">
+      <h2>Super Admin Panel - User Management</h2>
+      {message && <p>{message}</p>}
+      <table>
+        <thead>
+          <tr><th>Email</th><th>Role</th><th>Actions</th></tr>
+        </thead>
+        <tbody>
+          {users.map(user => (
+            <tr key={user.id}>
+              <td>{user.email}</td>
+              <td>{user.role}</td>
+              <td>
+                <button onClick={() => setSelectedUserId(user.id)}>Select</button>
+                &nbsp;
+                <button onClick={() => handleDelete(user.id)}>Delete</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      {selectedUserId && (
+        <div style={{ marginTop: 16 }}>
+          <label>
+            Set Role:
+            <select onChange={e => setNewRole(e.target.value)} defaultValue="">
+              <option value="" disabled>Select role</option>
+              <option value="VENDOR">Vendor</option>
+              <option value="ADMIN">Admin</option>
+              <option value="REVIEWER">Reviewer</option>
+              <option value="INSPECTOR">Inspector</option>
+              <option value="SUPER_ADMIN">Super Admin</option>
+            </select>
+          </label>
+          <button onClick={handleRoleChange}>Update Role</button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default SuperAdminDashboard;
+===== ./reactapp/src/components/Unauthorized.css =====
+.unauthorized-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 60vh;
+    text-align: center;
+}
+
+.unauthorized-container h1 {
+    color: #e53935;
+    margin-bottom: 1rem;
+}
+
+.unauthorized-container p {
+    margin-bottom: 2rem;
+    font-size: 1.2rem;
+}
+
+.unauthorized-container button {
+    padding: 0.75rem 1.5rem;
+    background-color: #6a1b9a;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.unauthorized-container button:hover {
+    background-color: #5e1688;
+}===== ./reactapp/src/components/AdminDashboard.css =====
+.admin-dashboard-container {
+  max-width: 1100px;
+  margin: 2rem auto;
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.1);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 0.8rem;
+  text-align: left;
+}
+
+.assignment-section label {
+  margin-right: 10px;
+  font-weight: 600;
+}
+
+.assignment-section select {
+  margin-right: 10px;
+  padding: 0.4rem;
+}
+
+.assignment-section button {
+  padding: 0.5rem 1rem;
+  margin-right: 1rem;
+  cursor: pointer;
+}
+
+.error {
+  color: #d32f2f;
+}
+
+.success {
+  color: #388e3c;
+  margin-bottom: 1rem;
+}
+===== ./reactapp/src/components/Auth.css =====
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f5f5f5;
+}
+
+.auth-form {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+.auth-form h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.error-message {
+    color: #e53935;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.auth-button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #6a1b9a;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.auth-button:hover {
+    background-color: #5e1688;
+}
+
+.auth-link {
+    text-align: center;
+    margin-top: 1rem;
+    color: #666;
+}
+
+.auth-link span {
+    color: #6a1b9a;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+/* Add to existing Auth.css */
+.success-message {
+    color: #28a745;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-weight: 500;
+}===== ./reactapp/src/components/SuperAdminDashboard.css =====
+.superadmin-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgb(0 0 0 / 0.1);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+tbody tr:hover {
+  background-color: #f5f5f5;
+}
+
+button {
+  margin-right: 8px;
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
+}
+===== ./reactapp/src/components/Home.jsx =====
+import { Link } from "react-router-dom";
+import './Home.css';
+
+function Home() {
+    return (
+        <div className="home-container">
+            <h2 className="home-title">Welcome to the Food Truck Vendor Application</h2>
+            <div className="home-card">
+                <p className="home-message">
+                    <b>Discover the Best Food Trucks in Chennai & Bangalore!</b><br /><br />
+                    Join our community of talented vendors and connect with food lovers who love culinary delights on wheels.<br /><br />
+                    Whether you’re a vendor looking to showcase your food or a foodie wanting to explore vibrant street food, you’ve come to the right place!
+                </p>
+                <Link to="/apply" className="home-btn">Become a Vendor</Link>
+            </div>
+        </div>
+    );
+}
+
+export default Home;
+===== ./reactapp/src/components/NavBar.jsx =====
+import './NavBar.css';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from './AuthContext';
+import { useState, useEffect } from 'react';
+import api from '../api';
+
+function Navbar() {
+    const { user, logout } = useAuth();
+    const navigate = useNavigate();
+    const [unreadCount, setUnreadCount] = useState(0);
+
+    useEffect(() => {
+        if (!user) { setUnreadCount(0); return; }
+        const fetchUnread = async () => {
+            try {
+                const res = await api.get('/api/notifications');
+                if (Array.isArray(res.data)) {
+                    setUnreadCount(res.data.filter(n => !n.read).length);
+                }
+            } catch { setUnreadCount(0); }
+        };
+        fetchUnread();
+        const interval = setInterval(fetchUnread, 30000);
+        return () => clearInterval(interval);
+    }, [user]);
+
+    const handleLogout = () => { logout(); navigate('/login'); };
+
+    return (
+        <nav>
+            <h2>Food Truck Vendor Application</h2>
+            <ul>
+                {user ? (
+                    <>
+                        <li><Link to="/">Home</Link></li>
+                        {user.role === 'VENDOR' && (
+                            <>
+                                <li><Link to="/vendor/profile">Profile</Link></li>
+                                <li><Link to="/vendor/application">Application</Link></li>
+                                <li><Link to="/vendor/dashboard">My Applications</Link></li>
+                            </>
+                        )}
+                        {user.role === 'REVIEWER' && <li><Link to="/reviewer/dashboard">Review Tasks</Link></li>}
+                        {user.role === 'INSPECTOR' && <li><Link to="/inspector/dashboard">Inspection Tasks</Link></li>}
+                        {(user.role === 'ADMIN' || user.role === 'REVIEWER' || user.role === 'INSPECTOR') && (
+                            <li><Link to="/getAllVendors">Vendor Details</Link></li>
+                        )}
+                        {user.role === 'ADMIN' && (
+                            <>
+                                <li><Link to="/admin/dashboard">Admin Dashboard</Link></li>
+                                <li><Link to="/admin/audit-logs">Audit Logs</Link></li>
+                            </>
+                        )}
+                        {user.role === 'SUPER_ADMIN' && <li><Link to="/superadmin">Super Admin Panel</Link></li>}
+                        <li>
+                            <Link to="/notifications" style={{ position: 'relative' }}>
+                                Notifications {unreadCount > 0 && <span className="badge">{unreadCount}</span>}
+                            </Link>
+                        </li>
+                        <li><button onClick={handleLogout}>Logout</button></li>
+                    </>
+                ) : (
+                    <>
+                        <li><Link to="/login">Login</Link></li>
+                        <li><Link to="/register">Register</Link></li>
+                    </>
+                )}
+            </ul>
+        </nav>
+    );
+}
+export default Navbar;
+===== ./reactapp/src/components/AuditLogs.jsx =====
+import { useEffect, useState } from 'react';
+import api from '../api';
+import './AuditLogs.css';
+
+function AuditLogs() {
+  const [logs,setLogs]=useState([]);
+  useEffect(()=>{ api.get('/api/admin/audit-logs').then(res=>setLogs(res.data)); },[]);
+  return (
+    <div className="audit-logs-container">
+      <h2>Audit Logs</h2>
+      <table><thead><tr><th>User</th><th>IP</th><th>Time</th><th>Module</th><th>Operation</th><th>Details</th></tr></thead>
+        <tbody>{logs.map(l=><tr key={l.id}><td>{l.user?.email}</td><td>{l.ipAddress}</td><td>{new Date(l.timestamp).toLocaleString()}</td>
+        <td>{l.module}</td><td>{l.operation}</td><td>{l.details}</td></tr>)}</tbody></table>
+    </div>
+  );
+}
+export default AuditLogs;
+===== ./reactapp/src/components/ProtectedRoute.jsx =====
+import { Navigate } from 'react-router-dom';
+
+function ProtectedRoute({ children, roles }) {
+    const token = localStorage.getItem('token');
+    const userRole = localStorage.getItem('userRole');
+
+    if (!token) return <Navigate to="/login" replace />;
+    if (roles && !roles.includes(userRole)) return <Navigate to="/unauthorized" replace />;
+
+    return children;
+}
+
+export default ProtectedRoute;
+===== ./reactapp/src/components/Unauthorized.jsx =====
+import { useNavigate } from 'react-router-dom';
+import './Unauthorized.css';
+
+function Unauthorized() {
+    const navigate = useNavigate();
+
+    return (
+        <div className="unauthorized-container">
+            <h1>403 - Unauthorized Access</h1>
+            <p>You don't have permission to access this page.</p>
+            <button onClick={() => navigate('/')}>Go to Home</button>
+        </div>
+    );
+}
+
+export default Unauthorized;===== ./reactapp/src/components/Home.css =====
+.home-container {
+  text-align: center;
+  margin-top: 4rem;
+}
+
+.home-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.home-card {
+  display: inline-block;
+  max-width: 600px;
+  padding: 2rem;
+  background: #fff;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  border-radius: 10px;
+}
+
+.home-message {
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  color: #444;
+  line-height: 1.5;
+}
+
+.home-btn {
+  display: inline-block;
+  background-color: #3f51b5;
+  color: white;
+  padding: 0.7rem 1.5rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+}
+.home-btn:hover { background-color: #223390; }
+===== ./reactapp/src/components/DisplayFoodTruck.css =====
+table {
+  width: 90%;
+  margin: 2rem auto;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+thead {
+  background-color: #6a1b9a;
+  color: white;
+}
+
+th, td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+tbody tr:hover {
+  background-color: #f1f1f1;
+}
+===== ./reactapp/src/components/Footer.css =====
+footer {
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
+  width: 100%;
+  font-size: 0.9rem;
+}
+===== ./reactapp/src/components/Register.jsx =====
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import api from '../api';
+import './Auth.css';
+
+function Register() {
+    const [formData, setFormData] = useState({ email:'', password:'', role:'VENDOR' });
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
+
+    const handleChange = e => setFormData({...formData, [e.target.name]: e.target.value});
+
+    const handleSubmit = async e => {
+        e.preventDefault();
+        if (formData.password.length < 6) {
+            setError("Password must be at least 6 characters");
+            return;
+        }
+        try {
+            await api.post('/api/auth/register', formData);
+            navigate('/login', { state: { successMessage: "Registration successful! Please login."}});
+        } catch (err) {
+            setError(err.response?.data || "Registration failed");
+        }
+    };
+
+    return (
+        <div className="auth-container">
+            <div className="auth-form">
+                <h2>Register</h2>
+                {error && <div className="error-message">{error}</div>}
+                <form onSubmit={handleSubmit}>
+                    <label>Email:</label>
+                    <input name="email" type="email" value={formData.email} onChange={handleChange} required />
+                    <label>Password:</label>
+                    <input name="password" type="password" value={formData.password} onChange={handleChange} required />
+                    <label>Role:</label>
+                    <select name="role" value={formData.role} onChange={handleChange}>
+                        <option value="VENDOR">Vendor</option>
+                        <option value="ADMIN">Admin</option>
+                        <option value="REVIEWER">Reviewer</option>
+                        <option value="INSPECTOR">Inspector</option>
+                        <option value="SUPER_ADMIN">Super Admin</option>
+
+                    </select>
+                    <button className="auth-button">Register</button>
+                </form>
+                <p className="auth-link">Already have an account? <span onClick={()=>navigate('/login')}>Login</span></p>
+            </div>
+        </div>
+    );
+}
+export default Register;
+===== ./reactapp/src/components/ReviewerDashboard.css =====
+.reviewer-dashboard-container {
+  width: 90%;
+  max-width: 950px;
+  margin: 2rem auto;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgb(0 0 0 / 0.08);
+}
+
+.reviewer-applications-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.reviewer-applications-table th,
+.reviewer-applications-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.review-details {
+  margin-top: 1.5rem;
+}
+
+.review-details textarea {
+  width: 100%;
+  min-height: 80px;
+  margin-top: 0.7rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.review-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.error {
+  color: #e53935;
+  margin-top: 1rem;
+}
+===== ./reactapp/src/components/AuthContext.jsx =====
+import { createContext, useContext, useState, useEffect } from 'react';
+import axios from 'axios';
+
+const AuthContext = createContext();
+
+export function AuthProvider({ children }) {
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            axios.get('http://localhost:8080/api/auth/me', {
+                headers: { Authorization: `Bearer ${token}` }
+            })
+                .then(res => {
+                    setUser(res.data);
+                    localStorage.setItem('userRole', res.data.role);
+                })
+                .catch(() => logout())
+                .finally(() => setLoading(false));
+        } else {
+            setLoading(false);
+        }
+    }, []);
+
+    const login = async (email, password) => {
+        try {
+            const res = await axios.post('http://localhost:8080/api/auth/login', { email, password });
+            localStorage.setItem('token', res.data.jwt);
+            const userRes = await axios.get('http://localhost:8080/api/auth/me', {
+                headers: { Authorization: `Bearer ${res.data.jwt}` }
+            });
+            setUser(userRes.data);
+            localStorage.setItem('userRole', userRes.data.role);
+            return true;
+        } catch {
+            return false;
+        }
+    };
+
+    const logout = () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('userRole');
+        setUser(null);
+    };
+
+    return (
+        <AuthContext.Provider value={{ user, login, logout, loading }}>
+            {!loading && children}
+        </AuthContext.Provider>
+    );
+}
+
+export function useAuth() {
+    return useContext(AuthContext);
+}
+===== ./reactapp/src/components/Footer.jsx =====
+import './Footer.css';
+
+function Footer() {
+    return (
+        <footer>
+            <p>© 2025 Food Truck Vendor Application. All rights reserved.</p>
+        </footer>
+    );
+}
+export default Footer;
+===== ./reactapp/src/components/VendorApplication.jsx =====
+import { useEffect, useState } from 'react';
+import api from '../api';
+import { useNavigate } from 'react-router-dom';
+
+function VendorApplication() {
+  const [profileExists, setProfileExists] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [applicationStatus, setApplicationStatus] = useState(null);
+  const [message, setMessage] = useState('');
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const checkProfile = async () => {
+      try {
+        const res = await api.get('/api/vendors/me');
+        setProfileExists(!!res.data);
+      } catch (error) {
+        if (error.response && error.response.status === 404) {
+          setProfileExists(false);
+        } else {
+          alert('Error checking profile. Please try again.');
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    const fetchApplications = async () => {
+      try {
+        const res = await api.get('/api/applications');
+        if (res.data && res.data.length > 0) {
+          setApplicationStatus(res.data[0].status || 'Unknown');
+        }
+      } catch {
+        setApplicationStatus(null);
+      }
+    };
+
+    checkProfile();
+    fetchApplications();
+  }, []);
+
+  const submitApplication = async () => {
+    setMessage('');
+    try {
+      await api.post('/api/applications/submit', {});
+      setMessage('Application submitted successfully.');
+      setTimeout(() => navigate('/vendor/dashboard'), 3000);
+    } catch {
+      setMessage('Failed to submit application. Please try again.');
+    }
+  };
+
+  if (loading) return <p>Loading...</p>;
+
+  if (!profileExists) {
+    return (
+      <div className="form-container">
+        <h2>Complete Your Profile First</h2>
+        <p>You need to complete your vendor profile before applying.</p>
+        <button onClick={() => navigate('/vendor/profile')}>Go to Profile</button>
+      </div>
+    );
+  }
+
+  return (
+    <div className="form-container">
+      <h2>Vendor License Application</h2>
+      {applicationStatus && (
+        <p>Your current application status: <b>{applicationStatus}</b></p>
+      )}
+      {message && <p>{message}</p>}
+      <button onClick={submitApplication}>Submit New Application</button>
+    </div>
+  );
+}
+
+export default VendorApplication;
+===== ./reactapp/src/components/Notifications.jsx =====
+import { useEffect, useState } from 'react';
+import api from '../api';
+import './Notifications.css';
+
+function Notifications() {
+ const [notifications,setNotifications]=useState([]);
+ useEffect(()=>{ api.get('/api/notifications').then(res=>setNotifications(res.data)); },[]);
+ const markAsRead=id=> api.put(`/api/notifications/${id}/read`).then(()=>setNotifications(notifications.map(n=>n.id===id?{...n,read:true}:n)));
+
+ return (
+   <div className="notifications-container">
+     <h2>Notifications</h2>
+     <ul>
+       {notifications.length===0 && <li>No notifications</li>}
+       {notifications.map(n=><li key={n.id} style={{fontWeight:n.read?'normal':'bold'}} onClick={()=>markAsRead(n.id)}>
+         {n.message} <br/><small>{new Date(n.timestamp).toLocaleString()}</small></li>)}
+     </ul>
+   </div>
+ );
+}
+export default Notifications;
+===== ./reactapp/src/index.css =====
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: #f5f5f5;
+  -webkit-font-smoothing: antialiased;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+===== ./reactapp/src/App.js =====
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { AuthProvider } from './components/AuthContext';
+import ProtectedRoute from './components/ProtectedRoute';
+import './App.css';
+
+import Home from './components/Home';
+import Navbar from './components/NavBar';
+import Footer from './components/Footer';
+import Login from './components/Login';
+import Register from './components/Register';
+import Unauthorized from './components/Unauthorized';
+
+import ApplyForm from './components/ApplyForm';
+import VendorDashboard from './components/VendorDashboard';
+import VendorProfile from './components/VendorProfile';
+import VendorApplication from './components/VendorApplication';
+
+import ReviewerDashboard from './components/ReviewerDashboard';
+import InspectorDashboard from './components/InspectorDashboard';
+import AdminDashboard from './components/AdminDashboard';
+import AuditLogs from './components/AuditLogs';
+import DisplayFoodTruck from './components/DisplayFoodTruck';
+import Notifications from './components/Notifications';
+import SuperAdminDashboard from './components/SuperAdminDashboard';
+
+
+function App() {
+    return (
+        <AuthProvider>
+            <Router>
+                <Navbar />
+                <div className="content">
+                    <Routes>
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/register" element={<Register />} />
+                        <Route path="/unauthorized" element={<Unauthorized />} />
+
+                        <Route path="/" element={
+                            <ProtectedRoute>
+                                <Home />
+                            </ProtectedRoute>
+                        } />
+
+                        <Route path="/superadmin" element={
+    <ProtectedRoute roles={['SUPER_ADMIN']}>
+        <SuperAdminDashboard />
+    </ProtectedRoute>
+} />
+
+
+                        <Route path="/apply" element={
+                            <ProtectedRoute roles={['VENDOR']}>
+                                <ApplyForm />
+                            </ProtectedRoute>
+                        } />
+
+                        <Route path="/vendor/profile" element={
+                            <ProtectedRoute roles={['VENDOR']}>
+                                <VendorProfile />
+                            </ProtectedRoute>
+                        } />
+
+                        <Route path="/vendor/application" element={
+                            <ProtectedRoute roles={['VENDOR']}>
+                                <VendorApplication />
+                            </ProtectedRoute>
+                        } />
+
+                        <Route path="/vendor/dashboard" element={
+                            <ProtectedRoute roles={['VENDOR']}>
+                                <VendorDashboard />
+                            </ProtectedRoute>
+                        } />
+
+                        <Route path="/reviewer/dashboard" element={
+                            <ProtectedRoute roles={['REVIEWER']}>
+                                <ReviewerDashboard />
+                            </ProtectedRoute>
+                        } />
+
+                        <Route path="/inspector/dashboard" element={
+                            <ProtectedRoute roles={['INSPECTOR']}>
+                                <InspectorDashboard />
+                            </ProtectedRoute>
+                        } />
+
+                        <Route path="/getAllVendors" element={
+                            <ProtectedRoute roles={['ADMIN','REVIEWER','INSPECTOR']}>
+                                <DisplayFoodTruck />
+                            </ProtectedRoute>
+                        } />
+
+                        <Route path="/admin/dashboard" element={
+                            <ProtectedRoute roles={['ADMIN']}>
+                                <AdminDashboard />
+                            </ProtectedRoute>
+                        } />
+
+                        <Route path="/admin/audit-logs" element={
+                            <ProtectedRoute roles={['ADMIN']}>
+                                <AuditLogs />
+                            </ProtectedRoute>
+                        } />
+
+                        <Route path="/notifications" element={
+                            <ProtectedRoute>
+                                <Notifications />
+                            </ProtectedRoute>
+                        } />
+                    </Routes>
+                </div>
+                <Footer />
+            </Router>
+        </AuthProvider>
+    );
+}
+
+export default App;
+===== ./reactapp/src/index.js =====
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
+reportWebVitals();
+===== ./reactapp/src/setupTests.js =====
+// jest-dom adds custom jest matchers for asserting on DOM nodes.
+// allows you to do things like:
+// expect(element).toHaveTextContent(/react/i)
+// learn more: https://github.com/testing-library/jest-dom
+import '@testing-library/jest-dom';
+===== ./reactapp/src/api.js =====
+import axios from 'axios';
+
+const api = axios.create({
+    baseURL: 'http://localhost:8080',
+    headers: {
+        'Content-Type': 'application/json'
+    }
+});
+
+api.interceptors.request.use(config => {
+    const token = localStorage.getItem('token');
+    if (token) config.headers.Authorization = `Bearer ${token}`;
+    return config;
+}, error => Promise.reject(error));
+
+api.interceptors.response.use(response => response,
+    error => {
+        if (error.response && error.response.status === 401) {
+            localStorage.removeItem('token');
+            localStorage.removeItem('userRole');
+            window.location.href = '/login';
+        }
+        return Promise.reject(error);
+    }
+);
+
+export default api;
+===== ./reactapp/src/tests/App.test.js =====
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
+import Home from "../components/Home";
+import App from "../App";
+import Navbar from "../components/NavBar";
+import Footer from "../components/Footer";
+import DisplayFoodTruck from "../components/DisplayFoodTruck";
+import ApplyForm from "../components/ApplyForm"; // Updated for ApplyForm
+
+test("State_renders_home_component_with_title_and_description", () => {
+  render(
+    <MemoryRouter>
+      <Home />
+    </MemoryRouter>
+  );
+
+  expect(screen.getByText("Welcome to the Food Truck Vendor Application")).toBeInTheDocument();
+  expect(screen.getByText(/Join our community of skilled vendors and connect with food lovers who are eager to explore culinary delights on wheels./)).toBeInTheDocument();
+});
+
+test("State_home_component_renders_become_a_vendor_button_with_link_to_apply", () => {
+  render(
+    <MemoryRouter>
+      <Home />
+    </MemoryRouter>
+  );
+
+  // Check if the "Apply Now" button is rendered with the correct link
+  const applyButton = screen.getByText("Become a Vendor");
+
+  expect(applyButton).toBeInTheDocument();
+  expect(applyButton).toHaveAttribute("href", "/apply");
+});
+
+test("State_renders_navbar_in_App_component_with_links", () => {
+  render(<App />);
+
+  // Check if the component renders the title and links
+  const titleElement = screen.getByText("Food Truck Vendor Application");
+  const homeLink = screen.getByText("Home");
+  const vendorDetailsLink = screen.getByText("Vendor Details");
+
+  expect(titleElement).toBeInTheDocument();
+  expect(homeLink).toBeInTheDocument();
+  expect(vendorDetailsLink).toBeInTheDocument();
+});
+
+test("ErrorHandling_checks_link_destinations", () => {
+  render(
+    <MemoryRouter>
+      <Navbar />
+    </MemoryRouter>
+  );
+
+  // Check if the links have the correct destinations
+  const homeLink = screen.getByText("Home");
+  const vendorDetailsLink = screen.getByText("Vendor Details");
+
+  expect(homeLink).toHaveAttribute("href", "/");
+  expect(vendorDetailsLink).toHaveAttribute("href", "/getAllVendors");
+});
+
+test("State_renders_footer_component_with_copyright_text", () => {
+  render(<Footer />);
+
+  // Check if the copyright text is rendered
+  const copyrightText = screen.getByText(
+    /2024 Food Truck Vendor Application. All rights reserved./i
+  );
+
+  expect(copyrightText).toBeInTheDocument();
+});
+
+test("Axios_fetching_and_displaying_vendor_applications", async () => {
+  // Mocked data to simulate the response from the API
+  const MOCK_DATA = [
+    {
+      name: "Tasty Tacos",
+      cuisineSpecialties: "Mexican",
+      operatingRegion: "Chennai",
+      menuHighlights: "Tacos, Burritos",  // Added menu highlights
+      phoneNumber: "1234567890",
+    },
+    {
+      name: "Sweet Treats",
+      cuisineSpecialties: "Desserts",
+      operatingRegion: "Bangalore",
+      menuHighlights: "Cupcakes, Brownies",  // Added menu highlights
+      phoneNumber: "0987654321",
+    },
+  ];
+
+  // Mock the fetch function to return the mocked data
+  const fetchMock = jest.spyOn(global, "fetch").mockResolvedValue({
+    ok: true,
+    json: () => Promise.resolve(MOCK_DATA),
+  });
+
+  render(<DisplayFoodTruck />);
+
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+
+  // Check if each vendor is displayed in the table
+  await waitFor(() => {
+    MOCK_DATA.forEach((application) => {
+      expect(screen.getByText(application.name)).toBeInTheDocument();
+      expect(screen.getByText(application.cuisineSpecialties)).toBeInTheDocument();
+      expect(screen.getByText(application.operatingRegion)).toBeInTheDocument();
+      expect(screen.getByText(application.menuHighlights)).toBeInTheDocument();  // Check for menu highlights
+      expect(screen.getByText(application.phoneNumber)).toBeInTheDocument();
+    });
+  });
+
+  // Validate the fetch function call
+  expect(fetchMock).toHaveBeenCalledWith(
+    expect.stringContaining("/getAllVendors"),
+    expect.objectContaining({
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+  );
+  fetchMock.mockRestore();
+});
+
+test("Form_submits_valid_application_form", async () => {
+  render(
+    <MemoryRouter>
+      <ApplyForm />  {/* Updated for ApplyForm */}
+    </MemoryRouter>
+  );
+
+  // Fill in the form
+  fireEvent.change(screen.getByLabelText("Name:"), { target: { value: "Tasty Tacos" } });
+  fireEvent.change(screen.getByLabelText("Cuisine Specialties:"), { target: { value: "Mexican" } });
+  fireEvent.change(screen.getByLabelText("Operating Region:"), { target: { value: "Chennai" } });
+  fireEvent.change(screen.getByLabelText("Menu Highlights:"), { target: { value: "Tacos, Burritos" } });
+  fireEvent.change(screen.getByLabelText("Phone Number:"), { target: { value: "1234567890" } });
+
+  const fetchMock = jest.spyOn(global, "fetch").mockResolvedValue({ ok: true });
+
+  // Submit the form
+  fireEvent.click(screen.getByText("Submit Application"));
+
+  // Wait for the success modal to appear
+  await waitFor(() => {
+    expect(screen.getByText("Application submitted successfully!")).toBeInTheDocument();
+  });
+
+  fetchMock.mockRestore();
+});
+
+test("Form_submits_invalid_application_form", () => {
+  render(
+    <MemoryRouter>
+      <ApplyForm /> {/* Updated for ApplyForm */}
+    </MemoryRouter>
+  );
+
+  // Attempt to submit without filling in the form
+  const submitButton = screen.getByText("Submit Application");
+  fireEvent.click(submitButton);
+
+  // Check for validation error messages
+  expect(screen.getByText("Name is required")).toBeInTheDocument();
+  expect(screen.getByText("Cuisine Specialties are required")).toBeInTheDocument();
+  expect(screen.getByText("Operating Region is required")).toBeInTheDocument();
+  expect(screen.getByText("Menu Highlights are required")).toBeInTheDocument();  // Check for menu highlights validation
+  expect(screen.getByText("Phone Number is required")).toBeInTheDocument();
+});
+
+test("Routes_checks_all_components_and_routes", () => {
+  render(<App />);
+
+  const homeLink = screen.getByText(/Home/i);
+  fireEvent.click(homeLink);
+  expect(screen.getByText("Welcome to the Food Truck Vendor Application")).toBeInTheDocument();
+
+  const applyLink = screen.getByText("Become a Vendor");
+  fireEvent.click(applyLink);
+  expect(screen.getByText("Apply to Become a Food Truck Vendor")).toBeInTheDocument();
+
+  const vendorDetailsLink = screen.getByText("Vendor Details");
+  fireEvent.click(vendorDetailsLink);
+  expect(screen.getByText("Submitted Food Truck Vendor Applications")).toBeInTheDocument();
+});
